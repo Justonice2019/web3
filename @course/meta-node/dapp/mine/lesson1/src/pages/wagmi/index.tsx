@@ -1,31 +1,40 @@
-import { useReadContract, useAccount } from 'wagmi'
-import { abi } from '../../abis/abi'
-// import {stakeAbi} from "../../abis/abi-stake";
-import {stakeAbi} from "../../abis/stakeAbi2";
-
-// console.log(stakeAbi.filter((s: any) => s.type === 'function'))
+import {useCallback, useState} from 'react'
+import {useReadContract, useAccount, usePublicClient} from 'wagmi'
+import {abiBank} from '../../abis/abi'
 
 export default function Page() {
   const account = useAccount()
+  const publicClient = usePublicClient()
+
   const result = useReadContract({
-    abi,
-    // abi:stakeAbi,
-    address: '0x01fC441BeFb115906e3D27d39C2155fF106e80B2',
-    functionName: 'getBalance'
+    abi: abiBank,
+    address: '0x947a31dD8cff2F23C9D188079dD1a3E3471D8903',
+    functionName: 'getBalance',
+    account: account.address as `0x${string}`,
+    query: {
+      enabled: true, // 只有点击按钮后才启用
+    }
   })
-  console.log(result)
+  const [balance, setBalance] = useState<bigint | null>(null)
 
-  // const account = useAccount()
-  // const result = useReadContract({
-  //   abi: stakeAbi,
-  //   address: '0x6b175474e89094c44da98b954eedeac495271d0f',
-  //   functionName: 'stakingBalance',
-  //   args: [BigInt(0), account.address!],
-  //   query: { enabled: Boolean(account.address) }
-  // })
+  const onGetBalance = useCallback(async () => {
+    const data = await publicClient?.readContract({
+      address: '0x947a31dD8cff2F23C9D188079dD1a3E3471D8903',
+      abi: abiBank,
+      functionName: 'getBalance',
+      account: account.address as `0x${string}`,
+    })
+    setBalance(data as bigint);
+  }, [account.address, publicClient])
+
   return (
-    <div>
-
-    </div>
+      <div>
+        {account.address && <div>
+            <div>当前地址: {account.address}</div>
+            <div>余额: {result.data as bigint}</div>
+            <span>余额: {balance};</span>
+            <button onClick={onGetBalance}>获取余额</button>
+        </div>}
+      </div>
   )
 }

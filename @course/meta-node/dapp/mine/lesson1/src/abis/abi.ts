@@ -16,7 +16,7 @@
 // ] as const
 
 
-export const abi = [
+export const abiBank = [
   {
     "stateMutability": "payable",
     "type": "fallback"

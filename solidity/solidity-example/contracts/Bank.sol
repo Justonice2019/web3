@@ -6,13 +6,14 @@ interface IBank {
     function deposit() external payable;
     function withdraw(uint256 amount) external;
     function getBalance() external view returns (uint256);
-}// 
+}//
 
 // 实现银行接口的合约
 contract Bank is IBank {
     receive() external payable {}
 
     fallback() external payable { }
+
     mapping(address => uint256) public balances;
 
     function deposit() external payable override {
