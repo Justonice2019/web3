@@ -1,42 +1,35 @@
 import {useCallback, useState} from 'react'
-import {useReadContract, useAccount, usePublicClient, useSignMessage, useReadContracts} from 'wagmi'
-import {abiBank1, abiBank2} from '../../abis/abi-bank'
+import {useReadContract, useAccount, usePublicClient, useSignMessage, useReadContracts, useWriteContract} from 'wagmi'
+import {abiBank} from '../../abis/abi-bank'
+import {bankContractAddress} from '../../utils'
+import {formatEther, parseEther, parseUnits} from "viem";
 
 export default function Page() {
   const [balance, setBalance] = useState<bigint | null>(null)
   const [balances, setBalances] = useState<Array<bigint | null>>([])
   const [signData, setSignData] = useState<string>()
+  const [depositAmount, setDepositAmount] = useState<string>()
 
   const account = useAccount()
   const publicClient = usePublicClient()
+  const writeContractObj = useWriteContract()
   const { signMessage } = useSignMessage()
 
 
   const result = useReadContract({
-    abi: abiBank1,
-    address: '0x947a31dD8cff2F23C9D188079dD1a3E3471D8903',
+    abi: abiBank,
+    address: bankContractAddress,
     functionName: 'getBalance',
     account: account.address as `0x${string}`,
     query: {
       enabled: Boolean(account.address),
     }
   })
-  // const result2 = useReadContracts({
-  //   contracts: [
-  //     {
-  //       abi: abiBank1,
-  //       address: '0x947a31dD8cff2F23C9D188079dD1a3E3471D8903',
-  //       functionName: 'getBalance',
-  //     }
-  //   ],
-  //   account: account.address as `0x${string}`,
-  // })
-  // console.log(result2)
 
   const onGetBalance = useCallback(async () => {
     const data = await publicClient?.readContract({
-      address: '0x947a31dD8cff2F23C9D188079dD1a3E3471D8903',
-      abi: abiBank1,
+      address: bankContractAddress,
+      abi: abiBank,
       functionName: 'getBalance',
       account: account.address as `0x${string}`,
     })
@@ -47,8 +40,8 @@ export default function Page() {
     const data = await publicClient?.multicall({
       contracts: [
         {
-          address: '0x947a31dD8cff2F23C9D188079dD1a3E3471D8903',
-          abi: abiBank1,
+          address: bankContractAddress,
+          abi: abiBank,
           functionName: 'getBalance',
         }
       ],
@@ -73,22 +66,43 @@ export default function Page() {
     console.log(res)
   }, [signMessage])
 
+  const onClickDeposit = useCallback(async () => {
+    if (!depositAmount) {
+      return
+    }
+    const hash = writeContractObj.writeContract({
+      address: bankContractAddress,
+      abi: abiBank,
+      functionName: 'deposit',
+      account: account.address as `0x${string}`,
+      // value: parseEther(depositAmount), // 存入金额需要转换为 ether
+      value: BigInt(depositAmount), // 存入金额需要转换为 wei
+    })
+    console.log(hash)
+
+  }, [account.address, publicClient, depositAmount])
+
   return (
       <div>
         {account.address && <div>
             <div>当前地址: {account.address}</div>
             <div>余额: {result.data as bigint}</div>
             <div>
-                <span>余额: {balance};</span>
+                <span>获取余额: {balance};</span>
                 <button onClick={onGetBalance}>获取余额(单个合约)</button>
             </div>
             <div>
-                <span>余额: {balances?.join(', ')};</span>
+                <span>获取余额: {balances?.join(', ')};</span>
                 <button onClick={onGetMultiBalance}>获取余额(多个合约)</button>
             </div>
             <div>
-                <span>签名消息: {signData?.slice(0, 10)}...</span>
+                <span>签名消息: {signData ? `${signData.slice(0, 80)}...` : ''}</span>
                 <button onClick={onSignMessage}>签名消息</button>
+            </div>
+            <div>
+                <span>存入金额: <input placeholder="请输入存入金额" value={depositAmount} onChange={e => setDepositAmount(e.target.value)} /></span>
+                <span>wei</span>
+                <button onClick={onClickDeposit}>存入</button>
             </div>
         </div>}
       </div>
