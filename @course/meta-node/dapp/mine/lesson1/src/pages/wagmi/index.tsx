@@ -1,13 +1,16 @@
 import {useCallback, useState} from 'react'
-import {useReadContract, useAccount, usePublicClient, useReadContracts} from 'wagmi'
+import {useReadContract, useAccount, usePublicClient, useSignMessage, useReadContracts} from 'wagmi'
 import {abiBank1, abiBank2} from '../../abis/abi-bank'
 
 export default function Page() {
   const [balance, setBalance] = useState<bigint | null>(null)
   const [balances, setBalances] = useState<Array<bigint | null>>([])
+  const [signData, setSignData] = useState<string>()
 
   const account = useAccount()
   const publicClient = usePublicClient()
+  const { signMessage } = useSignMessage()
+
 
   const result = useReadContract({
     abi: abiBank1,
@@ -37,7 +40,6 @@ export default function Page() {
       functionName: 'getBalance',
       account: account.address as `0x${string}`,
     })
-    console.log(data)
     setBalance(data as bigint);
   }, [account.address, publicClient])
 
@@ -55,10 +57,21 @@ export default function Page() {
     const newBalances = [
         ...balances
     ]
-    const balancesList = data?.map(d => d.result as bigint) as Array<bigint>
+    const balancesList = data?.map(d => d.result) as Array<bigint>
     newBalances.push(...balancesList)
     setBalances(newBalances)
   }, [account.address, publicClient])
+
+  const onSignMessage = useCallback(() => {
+    const res = signMessage({
+      message: 'Hello',
+    }, {
+      onSuccess: (data) => {
+        setSignData(data)
+      }
+    })
+    console.log(res)
+  }, [signMessage])
 
   return (
       <div>
@@ -72,6 +85,10 @@ export default function Page() {
             <div>
                 <span>余额: {balances?.join(', ')};</span>
                 <button onClick={onGetMultiBalance}>获取余额(多个合约)</button>
+            </div>
+            <div>
+                <span>签名消息: {signData?.slice(0, 10)}...</span>
+                <button onClick={onSignMessage}>签名消息</button>
             </div>
         </div>}
       </div>
