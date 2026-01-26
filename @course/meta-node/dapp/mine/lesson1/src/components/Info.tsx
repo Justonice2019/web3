@@ -9,7 +9,7 @@ const Info = () => {
   const {data, error} = useBalance({address})
   // console.log(data)
   const {data: myTokenData, error: mTokenError} = useBalance({address, token: '0xfF20675Fd1DFfbB767824b96108487ADd77988C0'})
-  // console.log(myTokenData)
+  // console.log(myTokenData)  ass
   return (
       <div className="info-container">
         <div>address: {address}</div>
