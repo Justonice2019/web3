@@ -9,8 +9,9 @@ import {
   useWaitForTransactionReceipt
 } from 'wagmi'
 import {abiBank} from '../../abis/abi-bank'
-import {bankContractAddress} from '../../utils'
+import * as constants from '../../constants'
 import {formatEther, parseEther, parseUnits} from "viem";
+import Header from "../../components/Header";
 
 export default function Page() {
   const [balance, setBalance] = useState<bigint | null>(null)
@@ -30,7 +31,7 @@ export default function Page() {
 
   const result = useReadContract({
     abi: abiBank,
-    address: bankContractAddress,
+    address: constants.bankContractAddress,
     functionName: 'getBalance',
     account: account.address as `0x${string}`,
     query: {
@@ -40,7 +41,7 @@ export default function Page() {
 
   const onGetBalance = useCallback(async () => {
     const data = await publicClient?.readContract({
-      address: bankContractAddress,
+      address: constants.bankContractAddress,
       abi: abiBank,
       functionName: 'getBalance',
       account: account.address as `0x${string}`,
@@ -52,7 +53,7 @@ export default function Page() {
     const data = await publicClient?.multicall({
       contracts: [
         {
-          address: bankContractAddress,
+          address: constants.bankContractAddress,
           abi: abiBank,
           functionName: 'getBalance',
         }
@@ -84,7 +85,7 @@ export default function Page() {
     }
     // writeContractObj.writeContract({
     const hash = await writeContractObj.writeContractAsync({
-      address: bankContractAddress,
+      address: constants.bankContractAddress,
       abi: abiBank,
       functionName: 'deposit',
       account: account.address as `0x${string}`,
@@ -106,7 +107,7 @@ export default function Page() {
     }
     // writeContractObj.writeContract({
     const hash = await writeContractObj.writeContractAsync({
-      address: bankContractAddress,
+      address: constants.bankContractAddress,
       abi: abiBank,
       functionName: 'withdraw',
       account: account.address as `0x${string}`,
@@ -125,6 +126,7 @@ export default function Page() {
 
   return (
       <div>
+        <Header />
         {account.address && <div>
             <div>当前地址: {account.address}</div>
             <div>余额: {result.data as bigint}</div>

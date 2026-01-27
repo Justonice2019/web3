@@ -3,7 +3,7 @@ import {BrowserProvider, Contract, FallbackProvider, JsonRpcProvider, JsonRpcSig
 import type {Client, Chain, Transport, Account} from 'viem'
 import {config} from "../../wagmi";
 import {abiBank} from "../../abis/abi-bank";
-import {bankContractAddress} from "../../utils";
+import * as constants from "../../constants";
 import {sepolia} from "wagmi/chains";
 
 export function clientToProvider(client: Client<Transport, Chain>) {
@@ -62,6 +62,6 @@ export async function getBankContract() {
   const provider = getEthersProvider(config, { chainId: sepolia.id })
   const signer = await getEthersSigner(config, { chainId: sepolia.id })
   console.log(await signer.getAddress())
-  return new Contract(bankContractAddress, abiBank, signer || provider)
+  return new Contract(constants.bankContractAddress, abiBank, signer || provider)
 
 }
