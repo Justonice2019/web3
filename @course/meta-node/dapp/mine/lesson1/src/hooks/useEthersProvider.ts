@@ -2,6 +2,8 @@ import { FallbackProvider, JsonRpcProvider } from 'ethers'
 import { useMemo } from 'react'
 import type { Chain, Client, Transport } from 'viem'
 import { type Config, useClient } from 'wagmi'
+import {createConfig, http} from "@wagmi/core";
+import {mainnet, sepolia} from "wagmi/chains";
 
 export function clientToProvider(client: Client<Transport, Chain>) {
   const { chain, transport } = client
@@ -19,9 +21,15 @@ export function clientToProvider(client: Client<Transport, Chain>) {
   }
   return new JsonRpcProvider(transport.url, network)
 }
-
+// const config = createConfig({
+//   chains: [mainnet, sepolia],
+//   transports: {
+//     [mainnet.id]: http(),
+//     [sepolia.id]: http(),
+//   },
+// })
 /** Action to convert a viem Client to an ethers.js Provider. */
 export function useEthersProvider({ chainId }: { chainId?: number } = {}) {
-  const client = useClient<Config>({ chainId })
+  const client = useClient<Config>({ chainId, /*config*/ })
   return useMemo(() => (client ? clientToProvider(client) : undefined), [client])
 }
