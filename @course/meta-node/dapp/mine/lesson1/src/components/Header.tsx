@@ -2,9 +2,9 @@ import {ConnectButton} from '@rainbow-me/rainbowkit'
 import Link from 'next/link'
 const Header = () => {
   return (<div className="header-container">
-    <Link href={'/'}>Home</Link>
-    <Link href={'/ethers'}>Ethers</Link>
-    <Link href={'/wagmi'}>Wagmi</Link>
+    <Link href={'/'}>/</Link> <br/>
+    <Link href={'/ethers'}>/ethers</Link><br/>
+    <Link href={'/wagmi'}>/wagmi</Link><br/>
     <ConnectButton
         // label="Sign in"
         // accountStatus="avatar"
