@@ -6,7 +6,6 @@ import {abiBank} from "../../abis/abi-bank";
 import {bankContractAddress} from "../../utils";
 import {sepolia} from "wagmi/chains";
 
-
 export function clientToProvider(client: Client<Transport, Chain>) {
   const { chain, transport } = client
   const network = {
@@ -40,6 +39,8 @@ export function clientToSigner(client: Client<Transport, Chain, Account>) {
     chainId: chain.id,
     name: chain.name,
     ensAddress: chain.contracts?.ensRegistry?.address,
+
+
   }
   const provider = new BrowserProvider(transport, network)
   const signer = new JsonRpcSigner(provider, account.address)
@@ -52,6 +53,7 @@ export async function getEthersSigner(
     { chainId }: { chainId?: number } = {},
 ) {
   const client = await getConnectorClient(config, { chainId })
+  console.log(client)
   return clientToSigner(client)
 }
 
@@ -59,7 +61,7 @@ export async function getEthersSigner(
 export async function getBankContract() {
   const provider = getEthersProvider(config, { chainId: sepolia.id })
   const signer = await getEthersSigner(config, { chainId: sepolia.id })
-
+  console.log(await signer.getAddress())
   return new Contract(bankContractAddress, abiBank, signer || provider)
 
 }

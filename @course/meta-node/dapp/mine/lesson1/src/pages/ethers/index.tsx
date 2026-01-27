@@ -18,6 +18,8 @@ export default function Page () {
 
   const onGetBalance2 = async () => {
     const bankContract = await getBankContract()
+    console.log(bankContract.getBalance)
+    console.log(bankContract.deposit)
     const balance = await bankContract.getBalance()
     console.log(balance)
   }
