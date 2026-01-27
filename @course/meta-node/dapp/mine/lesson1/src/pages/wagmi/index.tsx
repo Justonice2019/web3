@@ -58,7 +58,7 @@ export default function Page() {
           functionName: 'getBalance',
         }
       ],
-      account: account.address,
+      account: account.address as `0x${string}`,
     })
     const newBalances = [
         ...balances

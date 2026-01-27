@@ -10,6 +10,7 @@ const Header = () => {
       <Link className="header-link" href={'/'}>Home</Link> <br/>
       <Link className="header-link" href={'/wagmi'}>Wagmi</Link><br/>
       <Link className="header-link" href={'/ethers'}>Ethers</Link><br/>
+      <Link className="header-link" href={'/ethers-hooks'}>Ethers(hooks)</Link><br/>
       <ConnectButton
           // label="Sign in"
           // accountStatus="avatar"

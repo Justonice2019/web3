@@ -1,9 +1,9 @@
 import {type Config, getClient, getConnectorClient} from '@wagmi/core'
 import {BrowserProvider, Contract, FallbackProvider, JsonRpcProvider, JsonRpcSigner} from 'ethers'
 import type {Client, Chain, Transport, Account} from 'viem'
-import {config} from "../../wagmi";
-import {abiBank} from "../../abis/abi-bank";
-import * as constants from "../../constants";
+import {config} from "../wagmi";
+import {abiBank} from "../abis/abi-bank";
+import * as constants from "../constants";
 import {sepolia} from "wagmi/chains";
 
 export function clientToProvider(client: Client<Transport, Chain>) {
@@ -39,8 +39,6 @@ export function clientToSigner(client: Client<Transport, Chain, Account>) {
     chainId: chain.id,
     name: chain.name,
     ensAddress: chain.contracts?.ensRegistry?.address,
-
-
   }
   const provider = new BrowserProvider(transport, network)
   const signer = new JsonRpcSigner(provider, account.address)
@@ -53,10 +51,8 @@ export async function getEthersSigner(
     { chainId }: { chainId?: number } = {},
 ) {
   const client = await getConnectorClient(config, { chainId })
-  console.log(client)
   return clientToSigner(client)
 }
-
 
 export async function getBankContract() {
   const provider = getEthersProvider(config, { chainId: sepolia.id })
