@@ -1,16 +1,19 @@
 import {ConnectButton} from '@rainbow-me/rainbowkit'
 import Link from 'next/link'
+import {useRouter} from 'next/router'
 
 const Header = () => {
+  // const router = useRouter()
+  // console.log(router)
   return (<div className="header-container">
     <div className="header-left">
-      rainBowKit
+      <Link className="header-link" href={'/'}>Home</Link>
+      <Link className="header-link" href={'/wagmi'}>Wagmi</Link>
+      <Link className="header-link" href={'/ethers'}>Ethers</Link>
+      <Link className="header-link" href={'/ethers-hooks'}>Ethers(hooks)</Link>
+      <Link className="header-link" href={'/meta-node-stake'}>MetaNode Stake</Link>
     </div>
     <div className="header-right">
-      <Link className="header-link" href={'/'}>Home</Link> <br/>
-      <Link className="header-link" href={'/wagmi'}>Wagmi</Link><br/>
-      <Link className="header-link" href={'/ethers'}>Ethers</Link><br/>
-      <Link className="header-link" href={'/ethers-hooks'}>Ethers(hooks)</Link><br/>
       <ConnectButton
           // label="Sign in"
           // accountStatus="avatar"

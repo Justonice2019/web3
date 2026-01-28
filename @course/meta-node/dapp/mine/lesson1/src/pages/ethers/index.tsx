@@ -3,7 +3,7 @@ import {sepolia} from "wagmi/chains";
 import {useCallback, useEffect, useState, useRef} from 'react'
 import {useAccount} from "wagmi";
 import Header from "../../components/Header";
-import {getBankContract} from "../../contracts/bankContract";
+import {getBankContract} from "../../contracts/bankContract/bankContract";
 import {Contract} from "ethers";
 
 export default function Page () {

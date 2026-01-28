@@ -7,7 +7,6 @@ import {
   polygon,
   sepolia,
 } from 'wagmi/chains';
-import {http} from "@wagmi/core";
 
 export const config = getDefaultConfig({
   appName: 'RainbowKit App',
@@ -21,13 +20,8 @@ export const config = getDefaultConfig({
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
   ],
   // transports: {
-    // 使用公共 RPC 端点而不是 Infura
-    // [mainnet.id]: http('https://ethereum.publicnode.com'),
-    // [polygon.id]: http('https://polygon.publicnode.com'),
-    // [optimism.id]: http('https://optimism.publicnode.com'),
-    // [arbitrum.id]: http('https://arbitrum.publicnode.com'),
-    // [base.id]: http('https://base.publicnode.com'),
-    // [sepolia.id]: http('https://sepolia.publicnode.com'),
+    // [sepolia.id]: http('https://sepolia.infura.io/v3/e13648d8a1f64b839a17533b1bd2d981')
+    // [sepolia.id]: http('https://api.zan.top/eth-sepolia')
   // },
   ssr: true,
 });
