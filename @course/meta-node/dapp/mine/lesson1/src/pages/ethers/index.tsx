@@ -7,7 +7,7 @@ import {getBankContract} from "../../contracts/bankContract";
 import {Contract} from "ethers";
 
 export default function Page () {
-  const bankContractRef = useRef<Contract | null>(null)
+  const [bankContract, setBankContract] = useState<Contract | null>(null)
   const {address} = useAccount()
 
   const [balance, setBalance] = useState<bigint>()
@@ -17,59 +17,76 @@ export default function Page () {
   useEffect(() => {
     ;(async () => {
       if (address) {
-        bankContractRef.current = await getBankContract()
+        const _bankContract = await getBankContract()
+        setBankContract(_bankContract)
       }
     })()
   }, [address])
 
   const onGetBalance = useCallback(async () => {
-    const balance = await bankContractRef.current?.getBalance();
+    const balance = await bankContract?.getBalance();
     setBalance(balance)
-  }, [])
+  }, [bankContract])
 
   const onClickDeposit = useCallback(async () => {
     if (!depositAmount) {
       return
     }
-    const tx = await bankContractRef.current?.deposit({
-      value: BigInt(depositAmount), // 存入金额需要转换为 wei
-    });
-    console.log(tx)
-    const receipt = await tx.wait();
-    console.log(receipt)
-    await onGetBalance()
-  }, [depositAmount, onGetBalance])
+    try {
+      console.log(bankContract)
+      const tx = await bankContract?.deposit({
+        value: BigInt(depositAmount), // 存入金额需要转换为 wei
+      });
+      console.log(tx)
+      const receipt = await tx.wait();
+      console.log(receipt)
+      await onGetBalance()
+    } catch (e) {
+      console.log(e)
+    }
+  }, [bankContract, depositAmount, onGetBalance])
   const onClickWithdraw = useCallback(async () => {
     if (!withdrawAmount) {
       return
     }
-    console.log(bankContractRef.current)
-    const tx = await bankContractRef.current?.withdraw(BigInt(withdrawAmount));
-    console.log(tx)
-    const receipt = await tx.wait();
-    console.log(receipt)
-    await onGetBalance()
-  }, [onGetBalance, withdrawAmount])
-
+    try {
+      console.log(bankContract)
+      const tx = await bankContract?.withdraw(BigInt(withdrawAmount));
+      console.log(tx)
+      const receipt = await tx.wait();
+      console.log(receipt)
+      await onGetBalance()
+    } catch (e) {
+      console.log(e)
+    }
+  }, [bankContract, onGetBalance, withdrawAmount])
+  console.log(address , bankContract)
   return (<div>
     <Header />
+
     {
-      address && bankContractRef.current && <div>
+      address && bankContract && <div>
             <div>
-                <span>余额: {balance}</span>
-                <button onClick={onGetBalance}>获取余额</button>
+                <span>contract address: {bankContract.target.toString()}</span>
             </div>
             <div>
-                <span>存入金额: <input placeholder="请输入存入金额" value={depositAmount}
+                <span>account address: {address}</span>
+            </div>
+            <div>
+            <span>balance: {balance}wei</span>
+                <button onClick={onGetBalance}>getBalance</button>
+            </div>
+            <div>
+                <span>deposit: <input placeholder="please input deposit amount" value={depositAmount}
                                        onChange={e => setDepositAmount(e.target.value)}/></span>
                 <span>wei</span>
-                <button onClick={onClickDeposit}>存入</button>
+                <button onClick={onClickDeposit}>deposit()</button>
             </div>
             <div>
-                <span>取出金额: <input placeholder="请输入取出金额" value={withdrawAmount}
+                <span>withdraw: <input placeholder="please input withdraw amount" value={withdrawAmount}
                                        onChange={e => setWithdrawAmount(e.target.value)}/></span>
                 <span>wei</span>
-                <button onClick={onClickWithdraw}>取出</button>
+                <button onClick={onClickWithdraw}>withdraw(unit256)</button>
             </div>
         </div>
     }
