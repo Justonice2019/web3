@@ -8,7 +8,7 @@ import {
   useWriteContract,
   useWaitForTransactionReceipt
 } from 'wagmi'
-import {abiBank} from '../../abis/abi-bank'
+import {bankAbi} from '../../abis/bankAbi'
 import * as constants from '../../constants'
 import {formatEther, parseEther, parseUnits} from "viem";
 import Header from "../../components/Header";
@@ -30,7 +30,7 @@ export default function Page() {
 
 
   const result = useReadContract({
-    abi: abiBank,
+    abi: bankAbi,
     address: constants.bankContractAddress,
     functionName: 'getBalance',
     account: account.address as `0x${string}`,
@@ -42,7 +42,7 @@ export default function Page() {
   const onGetBalance = useCallback(async () => {
     const data = await publicClient?.readContract({
       address: constants.bankContractAddress,
-      abi: abiBank,
+      abi: bankAbi,
       functionName: 'getBalance',
       account: account.address as `0x${string}`,
     })
@@ -54,7 +54,7 @@ export default function Page() {
       contracts: [
         {
           address: constants.bankContractAddress,
-          abi: abiBank,
+          abi: bankAbi,
           functionName: 'getBalance',
         }
       ],
@@ -86,7 +86,7 @@ export default function Page() {
     // writeContractObj.writeContract({
     const hash = await writeContractObj.writeContractAsync({
       address: constants.bankContractAddress,
-      abi: abiBank,
+      abi: bankAbi,
       functionName: 'deposit',
       account: account.address as `0x${string}`,
       // value: parseEther(depositAmount), // 存入金额需要转换为 ether
@@ -108,7 +108,7 @@ export default function Page() {
     // writeContractObj.writeContract({
     const hash = await writeContractObj.writeContractAsync({
       address: constants.bankContractAddress,
-      abi: abiBank,
+      abi: bankAbi,
       functionName: 'withdraw',
       account: account.address as `0x${string}`,
       args: [
