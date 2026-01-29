@@ -28,6 +28,7 @@ describe("Counter", function () {
     // check that the aggregated events match the current value
     let total = 0n;
     for (const event of events) {
+      // @ts-ignore
       total += event.args.by;
     }
 
