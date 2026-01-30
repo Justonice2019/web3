@@ -31,3 +31,17 @@ npx hardhat ignition deploy ignition/modules/Counter.ts --network sepolia # 部�
 ## 0x96B8319440c923174250b72D113943f51849277B 这个合约是我在 Sepolia 测试网络部署的合约, 通过 https://sepolia.etherscan.io/address/0x96B8319440c923174250b72D113943f51849277B 可以查询到
 npx hardhat keystore list # 查看配置的网络和私钥
 ````
+# solidity
+## 已部署成功且可以正式运行的合约
+| 合约 | Sepolia合约地址                                | Sepoliatoken地址  |   |
+|--------------------------------------------------------------------------------------|--------------------------------------------|---|---|
+| [Bank.sol](solidity%2Fmine%2Fsolidity_lesson%2Fhardhat-demo2%2Fcontracts%2FBank.sol) | 0x01fC441BeFb115906e3D27d39C2155fF106e80B2 |   |   |
+| [MetaNode.sol](solidity%2Fmine%2Fsolidity_lesson%2Fhardhat-demo2%2Fcontracts%2FMetaNode.sol) |  |  0x04CB08cC6A4fB789FC9fDeBb0701743F0E10A4Cb |   |
+| [MetaNodeStake.sol](solidity%2Fmine%2Fsolidity_lesson%2Fhardhat-demo2%2Fcontracts%2FMetaNodeStake.sol) | 0x5C140afb6D6977cA9199A577aB0575fCc6df2169 |   |   |
+
+## 已部署的合约
+| 合约 | Sepolia合约地址                                | Sepoliatoken地址  |   |
+|--------------------------------------------------------------------------------------|--------------------------------------------|---|---|
+| [MetaNode.sol](solidity%2Fmine%2Fsolidity_lesson%2Fhardhat-demo2%2Fcontracts%2FMetaNode.sol) |  |  0xf5976d2b843E884a605b7a997d49d4c9FA2981e0 |   |
+| [MetaNodeStake.sol](solidity%2Fmine%2Fsolidity_lesson%2Fhardhat-demo2%2Fcontracts%2FMetaNodeStake.sol) | 0x1CAcAcEb25f0609383Cb739d967ac17d534fa593 |   |   |
+
