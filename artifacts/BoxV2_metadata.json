@@ -6,64 +6,62 @@
 	"output": {
 		"abi": [
 			{
-				"stateMutability": "payable",
-				"type": "fallback"
-			},
-			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "balances",
-				"outputs": [
-					{
 						"internalType": "uint256",
-						"name": "",
+						"name": "value",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "deposit",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "withdraw",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
-				"stateMutability": "payable",
-				"type": "receive"
+				"inputs": [],
+				"name": "getLastUpdated",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getValue",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -79,7 +77,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"@course/meta-node/dapp/mine/lesson1/src/contracts/bankContract/Bank.sol": "Bank"
+			"@course/meta-node/solidity/mine/solidity_lesson/hardhat-demo2/contracts/test/TestBox.sol": "BoxV2"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -93,12 +91,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"@course/meta-node/dapp/mine/lesson1/src/contracts/bankContract/Bank.sol": {
-			"keccak256": "0x3e56804c6d9d07fabde6fc805240b9241dffe7730d96085aa7828a1ca74d422a",
+		"@course/meta-node/solidity/mine/solidity_lesson/hardhat-demo2/contracts/test/TestBox.sol": {
+			"keccak256": "0x495f8a91d0336cec25a4326ed0e65b971474be8cb8085f89f3135de8f1f4caef",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://52a31ebfe0f89b003624ba5821e980d79fa9cb88e873f3de4514f36b7a2913c7",
-				"dweb:/ipfs/QmewxHZHa5jbYewUQRPBAaznqJSurByHDqEvWreeeWKqYv"
+				"bzz-raw://9a28ec5e3efe428832ec7819967418b508790dd75fa8987f7a144afb92a2e69e",
+				"dweb:/ipfs/QmXwwYWgJPvqhGtzMUPE946f5gAC3RxwjLT83tzAetfa6A"
 			]
 		}
 	},

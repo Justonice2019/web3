@@ -52,7 +52,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"solidity/solidity-example/contracts/Bank.sol": "IBank"
+			"@course/meta-node/dapp/mine/lesson1/src/contracts/bankContract/Bank.sol": "IBank"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -66,7 +66,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"solidity/solidity-example/contracts/Bank.sol": {
+		"@course/meta-node/dapp/mine/lesson1/src/contracts/bankContract/Bank.sol": {
 			"keccak256": "0x3e56804c6d9d07fabde6fc805240b9241dffe7730d96085aa7828a1ca74d422a",
 			"license": "MIT",
 			"urls": [
