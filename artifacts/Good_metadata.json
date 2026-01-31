@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"@course/meta-node/solidity/mine/solidity_lesson/study_code/1.2/BadGood.sol": "Good"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@course/meta-node/solidity/mine/solidity_lesson/study_code/1.2/BadGood.sol": {
+			"keccak256": "0x3189288c568ea9b5d4e04296089dce00ca930beb98e27be2b09fc6c28e9a8e0d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://44f9455c29b6513261977ba60acd578d7a4e20ef1a38a41d1e963bcd65b650ff",
+				"dweb:/ipfs/QmVJmTSirLegoWatWXVMTtviVFJvA8DbXcG21ZNMXVaX85"
+			]
+		}
+	},
+	"version": 1
+}
