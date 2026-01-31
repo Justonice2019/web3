@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "explicitConvert",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"@course/meta-node/solidity/mine/solidity_lesson/study_code/2.1数据类型基础/TypeToOtherType.sol": "TypeToOtherType"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@course/meta-node/solidity/mine/solidity_lesson/study_code/2.1数据类型基础/TypeToOtherType.sol": {
+			"keccak256": "0x68158c3baf8c7578e97e856b1903ae921cb0583c1e3c99f1f0ef19f92debd1be",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://23e4bf79b0353e3cbfa8858e8155add0fe917f772e651bb1293ae2d8ba877668",
+				"dweb:/ipfs/QmYUvfqFGCSz1i7uCiUnWMx5PDDtYzhEpZZuARK3tuRuc1"
+			]
+		}
+	},
+	"version": 1
+}
