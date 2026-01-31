@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-ed87045625f560e047a805cfd76ebcc06c80f17d",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Bank.sol": "project/contracts/Bank.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Bank.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity >= 0.8.0 < 0.9.0;\r\n\r\n\r\ninterface IBank {\r\n    function deposit() external payable;\r\n    function withdraw(uint256 amount) external;\r\n    function getBalance() external view returns (uint256);\r\n}//\r\n\r\n// 实现银行接口的合约\r\ncontract Bank is IBank {\r\n    receive() external payable {}\r\n\r\n    fallback() external payable { }\r\n\r\n    mapping(address => uint256) public balances;\r\n\r\n    function deposit() external payable override {\r\n        require(msg.value > 0, \"desposit must great than 0\");\r\n        balances[msg.sender] += msg.value;\r\n    }\r\n\r\n    function withdraw(uint256 amount) external override {\r\n        require(balances[msg.sender] >= amount, \"no balance\");\r\n        balances[msg.sender] -= amount;\r\n        payable(msg.sender).transfer(amount);\r\n    }\r\n\r\n    function getBalance() external view override returns (uint256) {\r\n        return balances[msg.sender];\r\n    }\r\n}"
+      }
+    }
+  }
+}
