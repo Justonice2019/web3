@@ -1,0 +1,112 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getTypes",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					},
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					},
+					{
+						"internalType": "int8",
+						"name": "",
+						"type": "int8"
+					},
+					{
+						"internalType": "int8",
+						"name": "",
+						"type": "int8"
+					},
+					{
+						"internalType": "int16",
+						"name": "",
+						"type": "int16"
+					},
+					{
+						"internalType": "int16",
+						"name": "",
+						"type": "int16"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getUintTypes",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"@course/meta-node/solidity/mine/solidity_lesson/study_code/2.1数据类型基础/ValuesTypes.sol": "ValueTypes"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@course/meta-node/solidity/mine/solidity_lesson/study_code/2.1数据类型基础/ValuesTypes.sol": {
+			"keccak256": "0x3f17cdb9e175a8977f1b7e999c9a74c5ed4fcc5fbfdaee95092916d09f4732e0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c5aec74be199e190fd1f32decb2ebc2795d161800154e42a3edc56148aeb76cb",
+				"dweb:/ipfs/QmeaDPg8WHNWjWA95o7DNhsX5qikBNfpw65XrqrSPLJMxs"
+			]
+		}
+	},
+	"version": 1
+}

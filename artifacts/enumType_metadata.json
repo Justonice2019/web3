@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "logEnumItem",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"@course/meta-node/solidity/mine/solidity_lesson/study_code/2.1数据类型基础/enumType.sol": "enumType"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@course/meta-node/solidity/mine/solidity_lesson/study_code/2.1数据类型基础/enumType.sol": {
+			"keccak256": "0x1af0436b0461aa0b7083e81078c40f157253061c44ce26ed28593bc837ae9e08",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://056e6c14aecc02ef5997a7136a71dc5b706d1f9cd2753b1132662bed3bb58946",
+				"dweb:/ipfs/QmdezF1CX9vYzeCUdJM8WgKHbzDiYMJ5ts9uj3nKKtYkdn"
+			]
+		}
+	},
+	"version": 1
+}
