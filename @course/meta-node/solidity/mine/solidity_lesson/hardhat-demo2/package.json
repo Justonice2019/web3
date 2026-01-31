@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "hardhat compile",
+    "box:test": "hardhat test ./test/TestBox.js",
     "bank:getBalance": "hardhat run  ./scripts/Bank/getBalance.js  --network sepolia",
     "bank:deposit": "hardhat run  ./scripts/Bank/deposit.js  --network sepolia",
     "bank:withdraw": "hardhat run  ./scripts/Bank/withdraw.js  --network sepolia",

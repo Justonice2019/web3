@@ -45,3 +45,9 @@ npx hardhat keystore list # 查看配置的网络和私钥
 | [MetaNode.sol](solidity%2Fmine%2Fsolidity_lesson%2Fhardhat-demo2%2Fcontracts%2FMetaNode.sol) |  |  0xf5976d2b843E884a605b7a997d49d4c9FA2981e0 |   |
 | [MetaNodeStake.sol](solidity%2Fmine%2Fsolidity_lesson%2Fhardhat-demo2%2Fcontracts%2FMetaNodeStake.sol) | 0x1CAcAcEb25f0609383Cb739d967ac17d534fa593 |   |   |
 
+# 测试
+* Box: 0x6d2F9F3849589EDa6efAA30A226c00Db98749AE5
+* BoxProxy: 0xf2b371bc7905AE0940e9F968637ea19fb6b29c8d
+* 
+* Box: 0x6ac87Da3BbFaB4F5c6FcBBc27aBA83444971E875
+* BoxProxy: 0x2ada82A772917f9dc2FCCEF242f51618b38DD911

@@ -37,6 +37,7 @@ describe("stake test", async function () {
         await stakeProxyContract.connect(admin).addPool(zeroAddress, 5, 1E15, unstakeLockedBlocks, false)
         const poolLength = await stakeProxyContract.poolLength()
         expect(poolLength).to.length.gt(0)
+
     })
 
     it("setMetaNode", async () => {
@@ -95,7 +96,7 @@ describe("stake test", async function () {
         const tokenAddress = await erc20Contract.getAddress()
         // 质押池的权重，影响奖励分配
         const poolWeight = 10
-        // 最小质押金额 
+        // 最小质押金额
         const minDepositAmount = BigInt(1E18)
         const withUpdate = false
         await stakeProxyContract.connect(admin).addPool(tokenAddress, poolWeight, minDepositAmount, unstakeLockedBlocks, withUpdate)
@@ -160,7 +161,7 @@ describe("stake test", async function () {
         console.log("user2BalanceBefore::", user2BalanceBefore)
         console.log("user3BalanceBefore::", user3BalanceBefore)
 
-        // 跳过锁定区块提现 
+        // 跳过锁定区块提现
         for (let i = 0; i < unstakeLockedBlocks; i++) {
             await provider.send("evm_mine", []);
         }
