@@ -10,6 +10,20 @@ contract IntegerType {
         return (i256b, i256e, ui256b, ui256e);
     }
 
+    function getIntBoundaryValue()
+        public
+        pure
+        returns (uint8, uint8, uint16, uint16, uint32, uint32)
+    {
+        uint8 ui8Min = type(uint8).min; // 0
+        uint8 ui8Max = type(uint8).max; // 255
+        uint16 ui16Min = type(uint16).min; // 0
+        uint16 ui16Max = type(uint16).max; // 65535
+        uint32 ui32Min = type(uint32).min; // 0
+        uint32 ui32Max = type(uint32).max; // 32
+        return (ui8Min, ui8Max, ui16Min, ui16Max, ui32Min, ui32Max);
+    }
+
     function arithmeticOperations()
         public
         pure
@@ -54,14 +68,14 @@ contract IntegerType {
         return min - 1; // Error: Arithmetic operation underflowed or overflowed
     }
 
-  // 使用unchecked（谨慎使用！）
+    // 使用unchecked（谨慎使用！）
     function incrementChecked(uint8 x) public pure returns (uint) {
-        return x + 1;  // 不检查溢出，节省gasunchecked {
+        return x + 1; // 不检查溢出，节省gasunchecked {
     }
     // 使用unchecked（谨慎使用！）
     function incrementUnchecked(uint8 x) public pure returns (uint) {
         unchecked {
-            return x + 1;  // 不检查溢出，节省gas
+            return x + 1; // 不检查溢出，节省gas
         }
     }
     // 典型应用场景：循环计数器
@@ -70,23 +84,27 @@ contract IntegerType {
         for (uint i = 0; i < arr.length; ) {
             sum += arr[i];
             unchecked {
-                i++;  // i不可能溢出，使用unchecked节省gas
+                i++; // i不可能溢出，使用unchecked节省gas
             }
         }
         return sum;
     }
 
-     function compare() public pure returns (bool, bool, bool, bool, bool, bool) {
+    function compare()
+        public
+        pure
+        returns (bool, bool, bool, bool, bool, bool)
+    {
         uint a = 10;
         uint b = 5;
-        
+
         return (
-            a == b,  // 等于：false
-            a != b,  // 不等于：true
-            a > b,   // 大于：true
-            a < b,   // 小于：false
-            a >= b,  // 大于等于：true
-            a <= b   // 小于等于：false
+            a == b, // 等于：false
+            a != b, // 不等于：true
+            a > b, // 大于：true
+            a < b, // 小于：false
+            a >= b, // 大于等于：true
+            a <= b // 小于等于：false
         );
     }
 }

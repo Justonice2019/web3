@@ -17,6 +17,25 @@
 				],
 				"stateMutability": "pure",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "val",
+						"type": "uint256"
+					}
+				],
+				"name": "safeConvertToUint8",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -47,11 +66,11 @@
 	},
 	"sources": {
 		"@course/meta-node/solidity/mine/solidity_lesson/study_code/2.1数据类型基础/TypeConvert.sol": {
-			"keccak256": "0x84b64750e1b2ceef2dc426bf5bbaefeff1c228c4afe1117ae40c53eb6825f720",
+			"keccak256": "0x2ecb10143a20ec8671935fe7fdd60a2dde735c423b2754a795501f1b4835d307",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4f648395f65c5fccfa762dc5c1d2d287849891557eaf735f1f5199e9e4bafa7d",
-				"dweb:/ipfs/QmV33bcheRYtTRyA5Jk1ARmjUYTb534hfAVBnZnoGAKpuD"
+				"bzz-raw://cf60b711733d6543cee8d0e148583473e8f29e28dd66bb6cc771738fb8d250b3",
+				"dweb:/ipfs/QmUuh29TU5mDX5oELKbqkQSo8AfGczhUijC629PwVsCzzE"
 			]
 		}
 	},

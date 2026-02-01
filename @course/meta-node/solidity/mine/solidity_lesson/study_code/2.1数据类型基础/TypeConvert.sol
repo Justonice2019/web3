@@ -9,4 +9,10 @@ contract TypeConvert {
         // 结果：44（300 % 256 = 44）
         return small; // 44
     }
+
+    // 安全的类型转换
+    function safeConvertToUint8 (uint256 val) public pure returns (uint8) {
+        require(val <= type(uint8).max, "Value too large for uint8"); // 确保值不大于uint8的最大值
+        return uint8(val);
+    }
 }

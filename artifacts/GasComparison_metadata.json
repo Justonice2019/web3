@@ -73,11 +73,11 @@
 	},
 	"sources": {
 		"@course/meta-node/solidity/mine/solidity_lesson/study_code/2.1数据类型基础/IntegerType.sol": {
-			"keccak256": "0x7a661079bc5d67f7b4f96e835d5de3b2477396ffb6b4ed958599621712043a8c",
+			"keccak256": "0xfeef3c8575633f0b18e29a1af4654faedca696efec609d3169f11ec8d4336fb1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0ee3ce1c61f481368a52329f53fec4974034e5d2307ee8db31c88a52bee940a7",
-				"dweb:/ipfs/QmQMsEG7sY2RvgYvthetYu1FK4L3wwh5F9qKYdoJ7msYXV"
+				"bzz-raw://c5bae5b8aaeaf32e6e29d70a88b2b193a8433222d6efcd9ca04e755888c18d3e",
+				"dweb:/ipfs/QmWjrLTKhzjJqoxgk4aYvXTmuAuhSyDXNe2u8tNh6Vi5oS"
 			]
 		}
 	},

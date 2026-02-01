@@ -323,11 +323,11 @@
 	},
 	"sources": {
 		"@course/meta-node/solidity/mine/solidity_lesson/study_code/2.1数据类型基础/BytesType.sol": {
-			"keccak256": "0x2cd8f71eeb178a6567534ca8aa0b9bb95f9f5e05c8ab052b1e2d23baf13377e4",
+			"keccak256": "0xad9250ddaaa6f8761089afecbbeb5f93f0badb8734350d77b6f91a1794b78eff",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d20820f2a93a928d337f71806c8dd9ce39fd788fa93fa9bc1713f5738c7d3c95",
-				"dweb:/ipfs/QmRikZUkoQRkxT2MpQcJ1mQyZW41DruKwA8AnoFZcMSAju"
+				"bzz-raw://711f2baccabdad8a524cd5082d83f630e03bb0e7aec118ff4907f6701e71542a",
+				"dweb:/ipfs/QmdTW1PYfShuR4yamBhmaMgAdvrXZsj7bexoVpXN1ut1hP"
 			]
 		}
 	},

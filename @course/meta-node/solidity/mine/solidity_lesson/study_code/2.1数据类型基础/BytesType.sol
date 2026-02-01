@@ -73,5 +73,5 @@ contract BytesType {
     function bytesToStr () public view returns (string memory) {
         return string(bb); // 48656c6c6f => Hello
     }
- 
+
 }
