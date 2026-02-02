@@ -15,4 +15,13 @@ contract TypeConvert {
         require(val <= type(uint8).max, "Value too large for uint8"); // 确保值不大于uint8的最大值
         return uint8(val);
     }
+
+    // 地址类型转换
+    function toPayable (address addr) public pure returns (address payable) {
+        return payable(addr);
+    }
+
+    function uintToAddress (uint160 num) public pure returns (address) {
+        return address(num); // 因为地址是20字节 = 160位，所以只能和uint160互相转换。
+    }
 }

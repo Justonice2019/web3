@@ -36,6 +36,44 @@
 				],
 				"stateMutability": "pure",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "toPayable",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint160",
+						"name": "num",
+						"type": "uint160"
+					}
+				],
+				"name": "uintToAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -66,11 +104,11 @@
 	},
 	"sources": {
 		"@course/meta-node/solidity/mine/solidity_lesson/study_code/2.1数据类型基础/TypeConvert.sol": {
-			"keccak256": "0x2ecb10143a20ec8671935fe7fdd60a2dde735c423b2754a795501f1b4835d307",
+			"keccak256": "0xded87d1a98586250b3a0c25e4116354f382afbd3c6d9c72cdf9d5b1f614eb72c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cf60b711733d6543cee8d0e148583473e8f29e28dd66bb6cc771738fb8d250b3",
-				"dweb:/ipfs/QmUuh29TU5mDX5oELKbqkQSo8AfGczhUijC629PwVsCzzE"
+				"bzz-raw://2bb3064f711be8e716a31cd60a715adbb6be9b9001eeef14e5f41003ee2359ab",
+				"dweb:/ipfs/QmXPbUUF7AE2vAwwJzEsTTGbUDe88mgmQXSk9MXx5S1bXk"
 			]
 		}
 	},
