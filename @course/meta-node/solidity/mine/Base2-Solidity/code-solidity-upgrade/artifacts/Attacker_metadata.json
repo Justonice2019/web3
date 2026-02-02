@@ -1,0 +1,81 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_target",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "attack",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "target",
+				"outputs": [
+					{
+						"internalType": "contract VulnerableVault",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/2.5-合约收款、转账与安全问题/VulnerableVault.sol": "Attacker"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/2.5-合约收款、转账与安全问题/VulnerableVault.sol": {
+			"keccak256": "0x5ba37cef15fc19f9f420916fd6396d6f5ebb789df64e3f0c4185d60afb426953",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://402036d07c3984295f85e48a21f753ad61fefb5e09d0b98c250de22d372a7138",
+				"dweb:/ipfs/QmVBeMKwdrKDRJy6Gtd6mzJvbRs7G4fsQ8YuTQhSsUM3Mf"
+			]
+		}
+	},
+	"version": 1
+}
