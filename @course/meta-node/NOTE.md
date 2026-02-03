@@ -51,3 +51,13 @@ npx hardhat keystore list # 查看配置的网络和私钥
 * 
 * Box: 0x6ac87Da3BbFaB4F5c6FcBBc27aBA83444971E875
 * BoxProxy: 0x2ada82A772917f9dc2FCCEF242f51618b38DD911
+
+# remix
+## 如何使用浏览器版本的 remix, 访问本地项目目录
+````shell
+npm install -g @remix-project/remixd
+remixd -v
+0.6.60
+remixd -s . http://localhost:8080 --remix-ide https://remix.ethereum.org
+````
+![img.png](img.png)
