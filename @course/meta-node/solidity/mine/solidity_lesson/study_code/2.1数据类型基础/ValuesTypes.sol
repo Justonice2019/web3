@@ -23,9 +23,9 @@ int public balance;  // 等同于 int256 public balance;
 */
 contract ValueTypes {
     function getTypes()
-        public
-        pure
-        returns (bool, int, int8, int8, int16, int16)
+    public
+    pure
+    returns (bool, int, int8, int8, int16, int16)
     {
         // 返回参数不能太多会报错的
         // function getTypes() public pure returns (bool, int, int8, int16, int128, int256, address, bytes1, bytes2, bytes32) {

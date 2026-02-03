@@ -5,7 +5,7 @@ contract BytesType {
     bytes1 public b1 = 0x12;
     bytes4 public b4 = 0x12345678;
     bytes32 public b32 =
-        0x1234567890123456789012345678901234567890123456789012345678901234;
+    0x1234567890123456789012345678901234567890123456789012345678901234;
 
     function getLength() public pure returns (uint, uint, uint) {
         // bytes1 bb1 = 0x12; // 1
@@ -16,7 +16,7 @@ contract BytesType {
         bytes32 bb32; // 34
         return (bb1.length, bb4.length, bb32.length);
     }
-     // 访问单个字节
+    // 访问单个字节
     function accessByte() public view returns (bytes1) {
         return b32[0];  // 访问第一个字节 0x12
     }

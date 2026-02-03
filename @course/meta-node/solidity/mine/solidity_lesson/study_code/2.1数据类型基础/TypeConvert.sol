@@ -21,7 +21,18 @@ contract TypeConvert {
         return payable(addr);
     }
 
-    function uintToAddress (uint160 num) public pure returns (address) {
-        return address(num); // 因为地址是20字节 = 160位，所以只能和uint160互相转换。
+    // address转uint160
+    function addressToUint(address addr) public pure returns (uint160) {
+        return uint160(addr);
     }
+    //  0x5B38Da6a701c568545dCfcB03FcB875f56beddC4 520786028573371803640530888255888666801131675076 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
+    function conversionExample (address addr1, uint160 num, address addr2) public pure returns (address payable, address, uint160) {
+        return (
+            payable(addr1),
+            address(num), // 因为地址是20字节 = 160位，所以只能和uint160互相转换。
+            uint160(addr2)
+        );
+    }
+
+
 }

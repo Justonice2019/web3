@@ -26,9 +26,9 @@ contract AddressType {
     }
 
     function getSpecialAddresses()
-        public
-        view
-        returns (address, address, address)
+    public
+    view
+    returns (address, address, address)
     {
         return (address(this), msg.sender, tx.origin);
     }
@@ -37,15 +37,15 @@ contract AddressType {
 // 区分 msg.sender 和 tx.origin
 contract SenderVsOriginExampleSub {
     function getSpecialAddresses()
-        external
-        view
-        returns (address, address, address)
+    external
+    view
+    returns (address, address, address)
     {
         // 通过 SenderVsOriginExample 调用 SenderVsOriginExampleSub 的getSpecialAddresses 就会出现  msg.sender, tx.origin 不一致
         // address(this): 为 SenderVsOriginExampleSub 合约地址
         // msg.sender: SenderVsOriginExample 合约地址
         // tx.origin: 为登录账户地址
-        return (address(this), msg.sender, tx.origin); 
+        return (address(this), msg.sender, tx.origin);
     }
 }
 contract SenderVsOriginExample {
@@ -54,9 +54,9 @@ contract SenderVsOriginExample {
         sub = SenderVsOriginExampleSub(addr);
     }
     function getSpecialAddresses()
-        public
-        view
-        returns (address, address, address)
+    public
+    view
+    returns (address, address, address)
     {
         require(address(sub) != address(0), "empty sub!");
         return sub.getSpecialAddresses();
