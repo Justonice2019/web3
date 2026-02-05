@@ -56,8 +56,14 @@ npx hardhat keystore list # 查看配置的网络和私钥
 ## 如何使用浏览器版本的 remix, 访问本地项目目录
 ````shell
 npm install -g @remix-project/remixd
-remixd -v
-0.6.60
-remixd -s . http://localhost:8080 --remix-ide https://remix.ethereum.org
+````
+````shell
+remixd -v # 0.6.60
+````
+````shell
+cd ../../; remixd -s . http://localhost:8080 --remix-ide https://remix.ethereum.org
+````
+````shell
+cd ./solidity/mine/solidity_lesson/study_code; remixd -s . http://localhost:8080 --remix-ide https://remix.ethereum.org
 ````
 ![img.png](img.png)
