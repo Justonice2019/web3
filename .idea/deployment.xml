@@ -2,21 +2,21 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="ecs/ubuntu root@121.41.11.76">
+      <paths name="aliyun.ecs root@121.41.11.76:22">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="vm/centos root@192.168.88.130">
+      <paths name="fnos justonice@192.168.1.2:22">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="vm/ubuntu root@192.168.88.131">
+      <paths name="fnos root@192.168.1.2:22">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

@@ -4,7 +4,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract OwnerExample is Ownable {
     address public myOwner;
 
-    constructor () Ownable() {
+    constructor () Ownable(msg.sender) {
         myOwner = msg.sender;
     }
 
@@ -19,7 +19,7 @@ contract OwnerExample is Ownable {
         balances[msg.sender] += msg.value;
     }
 
-    function withdraw(uint256 amount) public {
+    function withdraw(uint256 amount) public onlyOwner {
         (bool success, ) = msg.sender.call{value: amount}("");
         require(success, "Failed");
     }
