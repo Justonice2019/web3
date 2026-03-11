@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="study_code" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="cd ./@course/meta-node/solidity/mine/solidity_lesson/study_code; remixd -s . http://localhost:8080 --remix-ide https://remix.ethereum.org" />
+    <option name="SCRIPT_TEXT" value="cd ../web3/@course/meta-node/solidity/mine/solidity_lesson/study_code; remixd -s . http://localhost:8080 --remix-ide https://remix.ethereum.org" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
