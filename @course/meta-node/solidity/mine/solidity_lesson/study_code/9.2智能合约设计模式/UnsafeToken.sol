@@ -12,4 +12,5 @@ contract UnsafeToken {
         (bool success, ) = msg.sender.call{value: amount}("");
         require(success, "Transfer failed.");
     }
+    //
 }
