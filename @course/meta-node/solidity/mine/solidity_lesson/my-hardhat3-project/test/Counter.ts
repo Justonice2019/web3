@@ -43,7 +43,7 @@ const {ethers} = await network.connect()
 
 const {deployContract} = ethers
 
-describe("计数器",  () => {
+describe("Counter",  () => {
   it('应该触发 Increment 事件', async () => {
       const counterContract = await deployContract("Counter")
       // console.log(counterContract)
