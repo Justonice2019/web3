@@ -39,4 +39,8 @@ contract Token {
         balanceOf[owner] -= amount;
         balanceOf[to] += amount;
     }
+
+    function getBalance() public view returns (uint256) {
+        return balanceOf[owner];
+    }
 }

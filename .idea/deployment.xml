@@ -2,14 +2,14 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="aliyun.ecs root@121.41.11.76:22">
+      <paths name="aliyun root@121.41.11.76:22">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="fnos justonice@192.168.1.2:22">
+      <paths name="fnos admin@ftylq.cn:30022">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

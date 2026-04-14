@@ -1,0 +1,9 @@
+{
+  "$global": {
+    "flag": true
+  },
+  "VaultModule": {
+    "_supply": "1000n",
+    "flag": false
+  }
+}

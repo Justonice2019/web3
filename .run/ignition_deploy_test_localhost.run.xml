@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="ignition:vault" type="js.build_tools.npm" nameIsGenerated="true">
+  <configuration default="false" name="ignition:deploy:test:localhost" type="js.build_tools.npm" nameIsGenerated="true">
     <package-json value="$PROJECT_DIR$/@course/meta-node/solidity/mine/solidity_lesson/my-hardhat3-project/package.json" />
     <command value="run" />
     <scripts>
-      <script value="ignition:vault" />
+      <script value="ignition:deploy:test:localhost" />
     </scripts>
     <node-interpreter value="C:/nvm/v22.21.1/node" />
     <package-manager value="C:\nvm\v22.21.1\npm.cmd" />

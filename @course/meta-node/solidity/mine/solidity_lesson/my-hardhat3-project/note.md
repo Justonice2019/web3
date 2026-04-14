@@ -174,7 +174,7 @@ Explorer: https://sourcify.dev/server/repo-ui/11155111/0xA46018D65E7e26ba3E85f76
 
 ````
 
-# 开启持久化节点 localhost
+# 启动本地节点 localhost
 ````text
 > my-hardhat3-project@1.0.0 node
 > hardhat node
@@ -197,3 +197,13 @@ Private Key: 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
 开启本地的常驻模拟服务, 只要窗口不关闭就一直可以使用服务
 
 可以指定 `--network localhost` 
+
+# 测试
+## 本地持久化测试
+````shell
+npx hardhat node # 开启本地化服务(关闭后就会丢失, 不是临时的)
+
+npx ignition:deploy:vault:localhost # 部署合约到 本地化服务
+
+npx hardhat test ./test/Vault.ts # 单独测试 Vault 合约
+````

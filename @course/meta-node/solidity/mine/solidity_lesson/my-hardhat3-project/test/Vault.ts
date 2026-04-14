@@ -15,6 +15,7 @@ describe('Vault', () => {
   let vaultContract: any;
 
   before(async () => {
+    console.log('before')
     const accounts = await ethers.getSigners();
     const account1 = accounts[0];
     const vaultAddress = addresses['VaultModule#Vault'];
@@ -26,6 +27,10 @@ describe('Vault', () => {
       { Name: 'Vault', Address: vaultAddress },
       { Name: 'account1', Address: account1.address },
     ]);
+  })
+
+  beforeEach(async () => {
+    console.log('beforeEach')
   })
 
   it('function getVaultBalance() public view returns (uint256)', async () => {

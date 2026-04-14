@@ -6,7 +6,7 @@
       <script value="ignition:deploy:vault" />
     </scripts>
     <node-interpreter value="C:/nvm/v22.21.1/node" />
-    <package-manager value="npm" />
+    <package-manager value="C:\nvm\v22.21.1\npm.cmd" />
     <envs />
     <method v="2" />
   </configuration>
