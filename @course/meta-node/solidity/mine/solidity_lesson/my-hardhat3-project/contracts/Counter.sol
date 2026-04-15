@@ -6,9 +6,16 @@ contract Counter {
 
   event Increment(uint by);
 
+  error TooLarge(uint256 value);
+
+  constructor (uint _x) {
+    x = _x;
+  }
+
+
   function inc() public {
     x++;
-    emit Increment(2);
+    emit Increment(1);
   }
 
   function getX() public view returns (uint) {
@@ -17,6 +24,9 @@ contract Counter {
 
   function incBy(uint by) public {
     require(by > 0, "incBy: increment should be positive");
+    if (by > 100) {
+      revert TooLarge(by);
+    }
     x += by;
     emit Increment(by);
   }

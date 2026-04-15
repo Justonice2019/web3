@@ -1,6 +1,6 @@
 import {network} from 'hardhat'
 import {expect} from 'chai'
-
+import { time } from "@nomicfoundation/hardhat-network-helpers";
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const addresses = require("../ignition/deployments/chain-31337/deployed_addresses.json");
@@ -53,5 +53,9 @@ describe('Vault', () => {
     console.log(`tokenOwnerBalance: ${tokenOwnerBalance}`)
     expect(tokenOwnerBalance).to.be.a('bigint')
   });
+
+  it('测试时间旅行', async () => {
+
+  })
 
 })

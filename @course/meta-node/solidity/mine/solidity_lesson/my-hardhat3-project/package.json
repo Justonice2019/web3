@@ -8,7 +8,8 @@
     "compile": "hardhat compile",
     "node": "hardhat node",
     "test": "hardhat test",
-    "test:counter": "hardhat test ./test/Counter.ts",
+    "test:counter": "hardhat test test/Counter/Counter.ts",
+    "test:counter.test": "hardhat test test/Counter/Counter.test.ts",
     "test:vault": "hardhat test ./test/Vault.ts",
     "run:send-op-tx": "hardhat run scripts/send-op-tx.ts",
     "run:Vault:localhost": "hardhat run scripts/Vault.ts --network localhost",
@@ -19,7 +20,8 @@
     "ignition:deploy:vault:hardhatMainnet": "npm run clean && hardhat ignition deploy ./ignition/modules/Vault.ts --network hardhatMainnet  --parameters ./ignition/parameters/hardhatMainnet.json",
     "ignition:deploy:vault:hardhatOp": "npm run clean && hardhat ignition deploy ./ignition/modules/Vault.ts --network hardhatOp --parameters ./ignition/parameters/hardhatOp.json",
     "ignition:deploy:vault:localhost": "npm run clean && hardhat ignition deploy ./ignition/modules/Vault.ts --network localhost --parameters ./ignition/parameters/localhost.json",
-    "ignition:deploy:test:localhost": "npm run clean && hardhat ignition deploy ./ignition/modules/Test.ts --network localhost --parameters ./ignition/parameters/localhost.json", "ignition:check:status": "hardhat ignition status chain-11155111",
+    "ignition:deploy:test:localhost": "npm run clean && hardhat ignition deploy ./ignition/modules/Test.ts --network localhost --parameters ./ignition/parameters/localhost.json",
+    "ignition:check:status": "hardhat ignition status chain-11155111",
     "ignition:check:verify": "hardhat ignition verify chain-11155111 --network sepolia"
   },
   "keywords": [],
@@ -41,5 +43,8 @@
     "mocha": "^11.7.5",
     "typescript": "~5.8.0"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "dayjs": "^1.11.20"
+  }
 }

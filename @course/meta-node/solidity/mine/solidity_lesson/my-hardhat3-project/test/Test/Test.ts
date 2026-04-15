@@ -1,16 +1,23 @@
 import {network} from 'hardhat'
 import {expect} from 'chai'
 import assert from 'assert'
-
 import { createRequire } from 'module';
 import {Contract} from "ethers";
-const require = createRequire(import.meta.url);
-const addresses = require("../ignition/deployments/chain-31337/deployed_addresses.json");
 
-const {ethers} = await network.connect({
+const require = createRequire(import.meta.url);
+const addresses = require("../../ignition/deployments/chain-31337/deployed_addresses.json");
+
+const {ethers, networkHelpers} = await network.connect({
   network: 'localhost',
   chainType: 'l1',
 })
+
+const deployTestFixture = async () => {
+  const test = await ethers.deployContract('Test')
+  return {
+    test
+  }
+}
 
 describe('Test', () => {
 
@@ -196,6 +203,16 @@ describe('Test', () => {
 
     await expect(testContract.incBy(102))
         .to.be.revert(ethers)
+  })
+
+  describe('错误测试', () => {
+    it('Panic错误测试', async () => {
+      const {test} = await networkHelpers.loadFixture(deployTestFixture)
+      console.log(await test.getAddress())
+      // await expect(test.arr(0))
+      await expect(test.getAtIndex(0))
+          .to.be.revertedWithPanic(0x32)
+    })
   })
 
 })

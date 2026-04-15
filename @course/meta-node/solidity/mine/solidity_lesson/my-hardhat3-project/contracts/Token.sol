@@ -17,6 +17,9 @@ contract Token {
 
     uint256 public supply;
 
+    event Transfer (address indexed from, address indexed to, uint256 indexed amount);
+    event ChangedBalance (address indexed from, uint256 indexed oldBalance, uint256 indexed newBalance);
+
     /**
      * @dev 构造函数
      * @notice 部署时给部署者分配初始代币
@@ -36,8 +39,11 @@ contract Token {
      */
     function transfer(address to, uint256 amount) public {
         require(balanceOf[owner] >= amount, "Insufficient balance");
+        uint256 oldBalance = balanceOf[owner];
         balanceOf[owner] -= amount;
         balanceOf[to] += amount;
+        emit Transfer(owner, to, amount);
+        emit ChangedBalance(owner, oldBalance, balanceOf[owner]);
     }
 
     function getBalance() public view returns (uint256) {

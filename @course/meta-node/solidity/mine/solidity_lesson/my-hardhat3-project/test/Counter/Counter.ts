@@ -41,11 +41,9 @@ import {expect} from "chai";
 
 const {ethers} = await network.connect()
 
-const {deployContract} = ethers
-
 describe("Counter",  () => {
   it('应该触发 Increment 事件', async () => {
-      const counterContract = await deployContract("Counter")
+      const counterContract = await ethers.deployContract("Counter")
       // console.log(counterContract)
       // console.log(counterContract.inc())
       await expect(counterContract.inc()).to.emit(counterContract, "Increment").withArgs(2n);

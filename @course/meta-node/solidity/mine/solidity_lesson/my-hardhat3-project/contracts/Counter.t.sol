@@ -11,7 +11,7 @@ contract CounterTest is Test {
   Counter counter;
 
   function setUp() public {
-    counter = new Counter();
+    counter = new Counter(0);
   }
 
   function test_InitialValue() public view {

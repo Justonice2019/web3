@@ -21,6 +21,9 @@ contract Test {
     return flag;
   }
 
+  function getAtIndex(uint256 index) public view returns (uint256) {
+    return arr[index];
+  }
   function getArr() public view returns (uint256[] memory) {
     return arr;
   }
