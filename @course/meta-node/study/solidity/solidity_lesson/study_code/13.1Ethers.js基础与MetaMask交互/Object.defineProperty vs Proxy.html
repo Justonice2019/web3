@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    // ============ 1. 基础对比 ============
+
+    // defineProperty：只能拦截已有的属性
+    const obj1 = {};
+    Object.defineProperty(obj1, 'name', {
+        get() {
+            console.log('get name');
+            return this._name;
+        },
+        set(val) {
+            console.log('set name to', val);
+            this._name = val;
+        }
+    });
+    obj1.name = 'Alice';  // ✅ 触发 set
+    console.log(obj1.name);  // ✅ 触发 get
+    console.log(obj1.age);  // ❌ 不触发任何拦截（age 不存在）
+
+    // Proxy：可以拦截任何属性（包括不存在的）
+    const obj2 = {};
+    const proxy2 = new Proxy(obj2, {
+        get(target, prop) {
+            console.log(`get ${String(prop)}`);
+            return target[prop];
+        },
+        set(target, prop, value) {
+            console.log(`set ${String(prop)} = ${value}`);
+            target[prop] = value;
+            return true;
+        }
+    });
+    console.log(obj2)
+    console.log(proxy2)
+    proxy2.name = 'Bob';  // ✅ 触发 set
+    console.log(proxy2.name);  // ✅ 触发 get
+    console.log(proxy2.age);  // ✅ 也触发 get（虽然不存在）
+
+
+</script>
+</body>
+</html>

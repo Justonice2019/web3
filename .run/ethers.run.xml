@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ethers" type="mocha-javascript-test-runner" nameIsGenerated="true">
+    <node-interpreter>project</node-interpreter>
+    <node-options />
+    <mocha-package>$PROJECT_DIR$/@course/meta-node/solidity/mine/solidity_lesson/my-hardhat3-project/node_modules/mocha</mocha-package>
+    <working-directory>$PROJECT_DIR$/@course/meta-node/solidity/mine/solidity_lesson/my-hardhat3-project</working-directory>
+    <pass-parent-env>true</pass-parent-env>
+    <ui>bdd</ui>
+    <extra-mocha-options>--inspect-brk=9001</extra-mocha-options>
+    <test-kind>SUITE</test-kind>
+    <test-file>$PROJECT_DIR$/@course/meta-node/solidity/mine/solidity_lesson/my-hardhat3-project/test/Test/ethers.ts</test-file>
+    <test-names>
+      <name value="ethers" />
+    </test-names>
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ignition:deploy:example:sepolia" type="js.build_tools.npm" nameIsGenerated="true">
+    <package-json value="$PROJECT_DIR$/@course/meta-node/solidity/mine/solidity_lesson/my-hardhat3-project/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="ignition:deploy:example:sepolia" />
+    </scripts>
+    <node-interpreter value="C:/nvm/v22.21.1/node" />
+    <package-manager value="C:\nvm\v22.21.1\npm.cmd" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>

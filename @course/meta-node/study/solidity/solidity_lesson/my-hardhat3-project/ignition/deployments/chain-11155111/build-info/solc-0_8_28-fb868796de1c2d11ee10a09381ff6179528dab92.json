@@ -1,0 +1,40 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-fb868796de1c2d11ee10a09381ff6179528dab92",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "compilerType": "solc",
+  "userSourceNameMap": {
+    "contracts/Example.sol": "project/contracts/Example.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Example.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^0.8.28;\r\n\r\ncontract Example {\r\n    uint256 public count;\r\n    uint256 public countInitial;\r\n    mapping(address => uint256) balanceOf;\r\n\r\n    Info public info;\r\n\r\n    struct Info {\r\n        address ownerAddress;\r\n        address contractAddress;\r\n        uint256 timestamp;\r\n    }\r\n\r\n    error MaxLimit(uint256 count);\r\n\r\n    error MinLimit(uint256 count);\r\n\r\n    event Increment(uint delta);\r\n\r\n    event Decrease(uint delta);\r\n\r\n    constructor(uint256 _count) {\r\n        count = _count;\r\n        countInitial = _count;\r\n        info = Info({\r\n            ownerAddress: msg.sender,\r\n            contractAddress: address(this),\r\n            timestamp: block.timestamp\r\n        });\r\n    }\r\n\r\n    function getCount() public view returns (uint256) {\r\n        return count;\r\n    }\r\n\r\n    function addCount() public {\r\n        uint256 delta = 1;\r\n        count += delta;\r\n        emit Increment(delta);\r\n    }\r\n\r\n    function addCount(uint256 delta) public {\r\n        require(delta > 0, \"delta must be more than 0\");\r\n        if(delta > 5) {\r\n            revert MaxLimit(delta);\r\n        }\r\n        count += delta;\r\n        emit Increment(delta);\r\n    }\r\n\r\n    function minusCount() public {\r\n        uint256 delta = 1;\r\n        require(count > delta, \"count insufficient\");\r\n        count -= delta;\r\n        emit Decrease(delta);\r\n    }\r\n\r\n    function minusCount(uint256 delta) public {\r\n        require(delta > 0, \"delta must be more than 0\");\r\n        require(count > delta, \"count insufficient\");\r\n        if(delta > 5) {\r\n            revert MinLimit(delta);\r\n        }\r\n        count -= delta;\r\n        emit Decrease(delta);\r\n    }\r\n\r\n    function depositETH () public payable {\r\n        require(msg.value > 0, \"value must be more than 0\");\r\n        balanceOf[msg.sender] += msg.value;\r\n    }\r\n\r\n    function withdraw (uint256 _amount) public {\r\n        require(balanceOf[msg.sender] >= _amount, \"balance insufficient\");\r\n        balanceOf[msg.sender] -= _amount;\r\n        (bool success,) = msg.sender.call{value: _amount}(\"\");\r\n        require(success, \"withdraw failed\");\r\n    }\r\n\r\n    function getBalance(address addr) public view returns (uint256) {\r\n        require(addr != address(0), \"addr can not be 0\");\r\n        return balanceOf[addr];\r\n    }\r\n\r\n}"
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-08eddb5febca987b1cd185929522d3e69e62bd90",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "compilerType": "solc",
+  "userSourceNameMap": {
+    "contracts/Test.sol": "project/contracts/Test.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Test.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\ncontract Test {\n  bool public flag;\n  uint256 public count;\n  uint256 public integer = 10;\n  string public str = \"Hello world\";\n  bool public boolean = true;\n  address public addr = msg.sender;\n  uint256[] public arr;\n\n  event Increase (uint256 indexed delta);\n\n  event Decrease (uint256 indexed delta);\n\n  function setFlag(bool _flag) public {\n    flag = _flag;\n  }\n  function getFlag() public view returns (bool) {\n    return flag;\n  }\n\n  function getAtIndex(uint256 index) public view returns (uint256) {\n    return arr[index];\n  }\n  function getArr() public view returns (uint256[] memory) {\n    return arr;\n  }\n\n  function pushToArr(uint256 val) public {\n    arr.push(val);\n  }\n\n  function inc() public {\n    count += 2;\n    emit Increase(2);\n  }\n  function dec() public {\n    count --;\n    emit Decrease(1);\n  }\n\n  function incBy(uint256 val) public {\n    require(val < 100);\n    require(val > 0, \"incBy: increment should be positive\");\n    count += val;\n  }\n\n}\n"
+      }
+    }
+  }
+}
