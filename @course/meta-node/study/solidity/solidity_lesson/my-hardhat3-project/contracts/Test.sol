@@ -46,5 +46,4 @@ contract Test {
     require(val > 0, "incBy: increment should be positive");
     count += val;
   }
-
 }

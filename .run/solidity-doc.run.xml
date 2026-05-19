@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="my-hardhat3-project" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="cd ../web3/@course/meta-node/study/solidity/solidity_lesson/my-hardhat3-project; remixd -s . http://localhost:8080 --remix-ide https://remix.ethereum.org" />
+  <configuration default="false" name="solidity-doc" type="ShConfigurationType">
+    <option name="SCRIPT_TEXT" value="cd ../web3/solidity/solidity-doc; remixd -s . http://localhost:8080 --remix-ide https://remix.ethereum.org" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />

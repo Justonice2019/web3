@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="node" type="js.build_tools.npm" nameIsGenerated="true">
-    <package-json value="$PROJECT_DIR$/@course/meta-node/solidity/mine/solidity_lesson/my-hardhat3-project/package.json" />
+    <package-json value="$PROJECT_DIR$/@course/meta-node/study/solidity/solidity_lesson/my-hardhat3-project/package.json" />
     <command value="run" />
     <scripts>
       <script value="node" />
