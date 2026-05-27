@@ -27,7 +27,8 @@
     "ignition:deploy:test:localhost": "hardhat ignition deploy ./ignition/modules/Test.ts --network localhost --parameters ./ignition/parameters/localhost.json",
     "ignition:deploy:example:sepolia": "hardhat ignition deploy ./ignition/modules/Example.ts --network sepolia",
     "ignition:check:status": "hardhat ignition status chain-11155111",
-    "ignition:check:verify": "hardhat ignition verify chain-11155111 --network sepolia"
+    "ignition:check:verify": "hardhat ignition verify chain-11155111 --network sepolia",
+    "ignition:deploy:crowdfundingFactory": "hardhat ignition deploy ./ignition/modules/CrowdfundingFactory.ts --network sepolia"
   },
   "keywords": [],
   "author": "",

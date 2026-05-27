@@ -311,7 +311,7 @@ describe('CrowdfundingCampaign', () => {
 
       await expect(campaign.connect(contributor1).contribute({
         value: parseEther('1'),
-      })).to.revertedWith('CrowdfundingCampaign: campaign has expired2')
+      })).to.revertedWith('CrowdfundingCampaign: campaign has expired')
     })
 
 

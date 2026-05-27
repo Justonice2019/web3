@@ -10,12 +10,12 @@ export function useFactory() {
 
   const createCampaign = async (name: string, goal: string, durationInDays: number) => {
     console.log('useFactory.createCampaign called with:', { name, goal, durationInDays });
-    
+
     if (!signer) {
       console.error('Signer is null');
       throw new Error('钱包未连接，请先连接钱包');
     }
-    
+
     if (!FACTORY_ADDRESS) {
       console.error('Factory address not configured');
       throw new Error('工厂合约地址未配置');
@@ -36,15 +36,15 @@ export function useFactory() {
       console.log('Calling createCampaign on factory...');
       const goalWei = ethers.parseEther(goal);
       console.log('Goal in wei:', goalWei.toString());
-      
+
       const tx = await factory.createCampaign(name.trim(), goalWei, durationInDays);
       console.log('Transaction sent:', tx.hash);
       console.log('Waiting for transaction confirmation...');
-      
+      //
       const receipt = await tx.wait();
       console.log('Transaction confirmed:', receipt);
-      
-      return receipt;
+
+      // return receipt;
     } catch (error: any) {
       console.error('Error in createCampaign:', error);
       // 提供更友好的错误信息
