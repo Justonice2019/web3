@@ -1,0 +1,8 @@
+{
+  "$global": {
+    "shouldBeAllowed": false
+  },
+  "VaultModule": {
+    "_supply": "1000n"
+  }
+}

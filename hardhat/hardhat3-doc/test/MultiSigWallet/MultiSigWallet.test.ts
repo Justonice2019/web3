@@ -1,10 +1,13 @@
 import {expect} from 'chai'
 import {network} from 'hardhat'
+import * as utils from '../../utils/index.ts'
 
 const {ethers, networkHelpers} = await network.connect({
     chainType: 'l1',
     network: 'localhost',
 })
+
+const {provider} = ethers
 
 const multiSigWalletFixture = async () => {
     const multiSigWalletFactory = await ethers.getContractFactory('MultiSigWallet')
@@ -12,8 +15,10 @@ const multiSigWalletFixture = async () => {
 
 
     const multiSigWallet = await multiSigWalletFactory.deploy([a1, a2, a3], 2)
+    const multiSigWalletAddr = await multiSigWallet.getAddress()
     return {
         multiSigWallet,
+        multiSigWalletAddr,
         a1, a2, a3, a4, a5, a6
     }
 }
@@ -91,11 +96,12 @@ describe('MultiSigWallet', () => {
     })
 
     describe('提案管理', async () => {
-        it('提交提案', async () => {
+
+        it('提交提案 获取提案', async () => {
 
             const {multiSigWallet, a1, a2, a3, a4, a5, a6} = await networkHelpers.loadFixture(multiSigWalletFixture)
-            const data = ethers.toUtf8Bytes("")
-            console.log(data)
+            const data = utils.toBytes('')
+
             const a6addr = await a6.getAddress()
             const value = 100n
             const tx = await multiSigWallet.submitTransaction(a6addr, value, data)
@@ -104,6 +110,67 @@ describe('MultiSigWallet', () => {
 
             const result = await multiSigWallet.getTransaction(0n)
             console.log(result)
+
+            expect(result[0] === a6addr).is.true
+            expect(result[1] === value).is.true
+            expect(result[2] === data).is.true
+            expect(result[3] === false).is.true
+            expect(result[4] === 0n).is.true
+        })
+
+        it('确认提案-撤销确认-执行提案', async () => {
+
+            const {multiSigWallet, multiSigWalletAddr, a1, a2, a3, a4, a5, a6} = await networkHelpers.loadFixture(multiSigWalletFixture)
+            const data = utils.toBytes('')
+
+            const a4addr = await a4.getAddress()
+            const value = 100n
+            const tx = await multiSigWallet.submitTransaction(a4addr, value, data)
+            const receipt = await tx.wait()
+            await expect(receipt).emit(multiSigWallet, 'SubmitTransaction').withArgs(0n, a4addr, value, data)
+
+            const result = await multiSigWallet.getTransaction(0n)
+            console.log(result)
+
+            expect(result[0] === a4addr).is.true
+            expect(result[1] === value).is.true
+            expect(result[2] === data).is.true
+            expect(result[3] === false).is.true
+            expect(result[4] === 0n).is.true
+
+            // 确认提案
+            const tx2 = await multiSigWallet.connect(a1).confirmTransaction(0n)
+            const receipt2 = await tx2.wait()
+            expect(receipt2?.status == 1).is.true
+
+            const tx3 = await multiSigWallet.connect(a2).confirmTransaction(0n)
+            const receipt3 = await tx3.wait()
+            expect(receipt3?.status == 1).is.true
+
+            const result2 = await multiSigWallet.getTransaction(0n)
+            console.log(result2)
+
+            expect(result2[4] == 2n).is.true
+
+            // 撤销确认
+            // const tx4 = await multiSigWallet.revokeConfirmation(0n)
+            // const receipt4 = await tx4.wait()
+            // expect(receipt4?.status == 1).is.true
+            // const result3 = await multiSigWallet.getTransaction(0n)
+            // expect(result3[4] == 1n).is.true
+
+            // await multiSigWallet
+            const tr = await a1.sendTransaction({
+                to: multiSigWalletAddr,
+                value: ethers.parseEther('1')
+            })
+            await tr.wait()
+            console.log(await provider.getBalance(multiSigWalletAddr))
+
+            const tx5 = await multiSigWallet.executeTransaction(0n)
+            const receipt5 = await tx5.wait()
+            expect(receipt5?.status == 1).is.true
+
         })
     })
 

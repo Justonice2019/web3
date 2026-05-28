@@ -87,7 +87,7 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
      * @notice 这是可升级合约的初始化函数，替代构造函数
      * @param _owners 初始所有者列表
      * @param _numConfirmationsRequired 需要的确认数（阈值）
-     *
+     * 
      * 工作流程：
      * 1. 初始化上下文（ContextUpgradeable）
      * 2. 验证所有者列表不为空
@@ -101,10 +101,10 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
     ) public initializer {
         // 初始化父合约上下文
         __Context_init();
-
+        
         // 验证：至少需要一个所有者
         require(_owners.length > 0, "Owners required");
-
+        
         // 验证：确认阈值必须大于0，且不能超过所有者总数
         require(
             _numConfirmationsRequired > 0 && _numConfirmationsRequired <= _owners.length,
@@ -114,10 +114,10 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
         // 遍历并添加所有所有者
         for (uint256 i = 0; i < _owners.length; i++) {
             address owner = _owners[i];
-
+            
             // 验证：所有者地址不能为零地址
             require(owner != address(0), "Invalid owner");
-
+            
             // 验证：所有者不能重复
             require(!isOwner[owner], "Owner not unique");
 
@@ -136,7 +136,7 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
      * @dev 添加新的所有者
      * @notice 只有现有所有者可以添加新所有者
      * @param newOwner 要添加的新所有者地址
-     *
+     * 
      * 验证步骤：
      * 1. 验证新所有者地址不为零地址
      * 2. 验证新所有者尚未存在
@@ -161,7 +161,7 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
      * @dev 移除所有者
      * @notice 只有现有所有者可以移除其他所有者
      * @param owner 要移除的所有者地址
-     *
+     * 
      * 验证步骤：
      * 1. 验证要移除的地址确实是所有者
      * 2. 验证移除后剩余所有者数量仍能满足确认阈值要求
@@ -180,7 +180,7 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
 
         // 取消所有者标记
         isOwner[owner] = false;
-
+        
         // 从数组中移除：使用交换技巧（将最后一个元素移到要删除的位置，然后删除最后一个）
         // 这样可以避免移动大量元素，提高 gas 效率
         for (uint256 i = 0; i < owners.length; i++) {
@@ -201,7 +201,7 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
      * @dev 修改确认阈值
      * @notice 只有所有者可以修改确认阈值
      * @param newThreshold 新的确认阈值
-     *
+     * 
      * 验证步骤：
      * 1. 验证新阈值大于0
      * 2. 验证新阈值不超过当前所有者总数
@@ -227,12 +227,12 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
      * @param to 目标地址（接收 ETH 或调用合约的地址）
      * @param value 要发送的 ETH 数量（单位：wei）
      * @param data 调用数据（如果是调用合约函数，需要编码函数签名和参数）
-     *
+     * 
      * 工作流程：
      * 1. 创建新的交易提案
      * 2. 初始状态：未执行，确认数为0
      * 3. 发出提交交易事件
-     *
+     * 
      * 使用场景：
      * - 纯 ETH 转账：data 设为 "0x"
      * - 调用合约：data 包含函数签名和参数的编码
@@ -261,16 +261,16 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
     }
 
     function getTransaction(uint256 txIndex)
-    public
-    view
-    txExists(txIndex)
-    returns (
-        address to,
-        uint256 value,
-        bytes memory data,
-        bool executed,
-        uint256 numConfirmations
-    )
+        public
+        view
+        txExists(txIndex)
+        returns (
+            address to,
+            uint256 value,
+            bytes memory data,
+            bool executed,
+            uint256 numConfirmations
+        )
     {
         Transaction storage transaction = transactions[txIndex];
         return (
@@ -291,32 +291,32 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
      * @dev 确认交易提案
      * @notice 所有者对交易提案进行确认，当确认数达到阈值后可以执行
      * @param txIndex 交易索引
-     *
+     * 
      * 验证条件（通过修饰符）：
      * 1. onlyOwner: 必须是所有者
      * 2. txExists: 交易必须存在
      * 3. notExecuted: 交易必须未执行
      * 4. notConfirmed: 当前所有者必须未确认过
-     *
+     * 
      * 执行步骤：
      * 1. 标记当前所有者已确认
      * 2. 增加确认计数
      * 3. 发出确认事件
      */
     function confirmTransaction(uint256 txIndex)
-    public
-    virtual
-    onlyOwner
-    txExists(txIndex)
-    notExecuted(txIndex)
-    notConfirmed(txIndex)
+        public
+        virtual
+        onlyOwner
+        txExists(txIndex)
+        notExecuted(txIndex)
+        notConfirmed(txIndex)
     {
         // 获取交易引用
         Transaction storage transaction = transactions[txIndex];
-
+        
         // 标记当前所有者已确认此交易
         isConfirmed[txIndex][_msgSender()] = true;
-
+        
         // 增加确认计数
         transaction.numConfirmations += 1;
 
@@ -328,13 +328,13 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
      * @dev 撤销确认
      * @notice 所有者可以撤销之前对交易提案的确认（仅在交易未执行前）
      * @param txIndex 交易索引
-     *
+     * 
      * 验证条件：
      * 1. onlyOwner: 必须是所有者
      * 2. txExists: 交易必须存在
      * 3. notExecuted: 交易必须未执行
      * 4. 必须已经确认过（通过 require 检查）
-     *
+     * 
      * 执行步骤：
      * 1. 验证当前所有者确实确认过
      * 2. 取消确认标记
@@ -342,21 +342,21 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
      * 4. 发出撤销确认事件
      */
     function revokeConfirmation(uint256 txIndex)
-    public
-    virtual
-    onlyOwner
-    txExists(txIndex)
-    notExecuted(txIndex)
+        public
+        virtual
+        onlyOwner
+        txExists(txIndex)
+        notExecuted(txIndex)
     {
         // 获取交易引用
         Transaction storage transaction = transactions[txIndex];
-
+        
         // 验证：当前所有者必须已经确认过此交易
         require(isConfirmed[txIndex][_msgSender()], "Transaction not confirmed");
 
         // 取消确认标记
         isConfirmed[txIndex][_msgSender()] = false;
-
+        
         // 减少确认计数
         transaction.numConfirmations -= 1;
 
@@ -369,29 +369,29 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
      * @dev 执行交易提案
      * @notice 当交易提案达到足够的确认数后，任何所有者都可以执行它
      * @param txIndex 交易索引
-     *
+     * 
      * 验证条件（通过修饰符）：
      * 1. onlyOwner: 必须是所有者
      * 2. txExists: 交易必须存在
      * 3. notExecuted: 交易必须未执行
-     *
+     * 
      * 执行流程：
      * 1. 验证确认数是否达到阈值
      * 2. 标记交易为已执行（防止重入攻击）
      * 3. 执行外部调用（发送 ETH 或调用合约函数）
      * 4. 验证执行结果
      * 5. 发出执行事件
-     *
+     * 
      * 安全特性：
      * - 使用 Checks-Effects-Interactions 模式防止重入攻击
      * - 先更新状态（executed = true），再执行外部调用
      * - 验证外部调用是否成功，失败则回滚
      */
     function executeTransaction(uint256 txIndex)
-    public
-    onlyOwner
-    txExists(txIndex)
-    notExecuted(txIndex)
+        public
+        onlyOwner
+        txExists(txIndex)
+        notExecuted(txIndex)
     {
         // 获取交易引用
         Transaction storage transaction = transactions[txIndex];
@@ -411,7 +411,7 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
         (bool success, ) = transaction.to.call{value: transaction.value}(
             transaction.data
         );
-
+        
         // 验证：外部调用必须成功，否则回滚整个交易
         require(success, "Transaction execution failed");
 
@@ -433,19 +433,19 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
     }
 
     function isTransactionConfirmed(uint256 txIndex, address owner)
-    public
-    view
-    txExists(txIndex)
-    returns (bool)
+        public
+        view
+        txExists(txIndex)
+        returns (bool)
     {
         return isConfirmed[txIndex][owner];
     }
 
     function getConfirmationCount(uint256 txIndex)
-    public
-    view
-    txExists(txIndex)
-    returns (uint256)
+        public
+        view
+        txExists(txIndex)
+        returns (uint256)
     {
         return transactions[txIndex].numConfirmations;
     }
@@ -455,7 +455,7 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
      * @notice 用于前端判断交易是否满足执行条件
      * @param txIndex 交易索引
      * @return 如果可以执行返回 true，否则返回 false
-     *
+     * 
      * 判断条件：
      * 1. 交易未执行
      * 2. 确认数达到或超过阈值
@@ -463,19 +463,19 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
     function canExecute(uint256 txIndex) public view txExists(txIndex) returns (bool) {
         Transaction storage transaction = transactions[txIndex];
         return
-                !transaction.executed &&  // 未执行
-                transaction.numConfirmations >= numConfirmationsRequired;  // 确认数足够
+            !transaction.executed &&  // 未执行
+            transaction.numConfirmations >= numConfirmationsRequired;  // 确认数足够
     }
 
     // ============ 接收 ETH ============
     /**
      * @dev 接收 ETH 的回退函数
      * @notice 当合约收到纯 ETH 转账时（没有 data），会触发此函数
-     *
+     * 
      * 使用场景：
      * - 直接向合约地址转账 ETH
      * - 使用 send() 或 transfer() 发送 ETH
-     *
+     * 
      * 注意：
      * - 只发出事件，不执行其他逻辑
      * - 任何人都可以向合约发送 ETH
@@ -490,11 +490,11 @@ contract MultiSigWalletUpgradeable is Initializable, ContextUpgradeable {
     /**
      * @dev 通用回退函数
      * @notice 当合约收到 ETH 但调用的函数不存在时，会触发此函数
-     *
+     * 
      * 使用场景：
      * - 向合约发送 ETH 但调用了不存在的函数
      * - 作为 receive() 的备用函数
-     *
+     * 
      * 注意：
      * - 只发出事件，不执行其他逻辑
      * - 任何人都可以向合约发送 ETH
