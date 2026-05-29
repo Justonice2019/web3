@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import {network} from 'hardhat'
-import * as utils from '../../utils/index.ts'
+import * as utils from '../../../utils/index.ts'
 
 const {ethers, networkHelpers} = await network.connect({
     chainType: 'l1',

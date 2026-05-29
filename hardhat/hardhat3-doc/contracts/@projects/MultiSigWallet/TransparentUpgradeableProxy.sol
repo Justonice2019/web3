@@ -11,6 +11,6 @@ contract TransparentUpgradeableProxy is OpenZeppelinTransparentUpgradeableProxy 
         address _logic,
         address admin_,
         bytes memory _data
-    ) OpenZeppelinTransparentUpgacradeableProxy(_logic, admin_, _data) {}
+    ) OpenZeppelinTransparentUpgradeableProxy(_logic, admin_, _data) {}
 }
 
