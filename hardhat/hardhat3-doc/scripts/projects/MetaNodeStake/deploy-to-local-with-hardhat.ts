@@ -41,5 +41,5 @@ const proxy = await ERC1967Proxy.deploy(metaNodeStakeAddr, initData)
 await proxy.waitForDeployment()
 const proxyAddr = await proxy.getAddress()
 if (ethers.isAddress(proxyAddr)) {
-    console.log('MetaNodeStake 部署代理成功:', proxyAddr);
+    console.log('MetaNodeStake代理 部署成功:', proxyAddr);
 }

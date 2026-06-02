@@ -18,7 +18,7 @@ const {ethers, networkHelpers} = await network.connect({
 
 // MetaNode部署成功: 0xB82008565FdC7e44609fA118A4a681E92581e680
 // MetaNodeStake 部署成功: 0x2a810409872AfC346F9B5b26571Fd6eC42EA4849
-// MetaNodeStake 部署代理成功: 0xb9bEECD1A582768711dE1EE7B0A1d582D9d72a6C
+// MetaNodeStake代理 部署成功: 0xb9bEECD1A582768711dE1EE7B0A1d582D9d72a6C
 const metaNodeAddr = '0xB82008565FdC7e44609fA118A4a681E92581e680'
 const proxyAddr = '0xb9bEECD1A582768711dE1EE7B0A1d582D9d72a6C'
 
@@ -49,7 +49,7 @@ const metaNodeStakeFixture = async () => {
 
     const metaNodeStakeProxy = await ethers.getContractAt('MetaNodeStake', _proxyAddr)
     return {
-        metaNodeStakeProxy
+        metaNodeStakeProxyFixture: metaNodeStakeProxy
     }
 }
 
@@ -57,13 +57,12 @@ describe('MetaNodeStake', () => {
     let metaNodeStakeProxy: MetaNodeStake;
     let metaNodeStakeProxyAddr: string;
     beforeEach(async () => {
-        const _metaNodeStakeProxy = await ethers.getContractAt('MetaNodeStake', proxyAddr)
-        const _metaNodeStakeProxyAddr = await _metaNodeStakeProxy.getAddress()
-        metaNodeStakeProxy = _metaNodeStakeProxy
-        metaNodeStakeProxyAddr = _metaNodeStakeProxyAddr
+        metaNodeStakeProxy = await ethers.getContractAt('MetaNodeStake', proxyAddr)
+        metaNodeStakeProxyAddr = await metaNodeStakeProxy.getAddress()
     })
 
     describe('非快照', () => {
+
         it('查看基本信息', async () => {
             console.log('       startBlock: ', await metaNodeStakeProxy.startBlock())
             console.log('       endBlock:', await metaNodeStakeProxy.endBlock())
@@ -81,8 +80,8 @@ describe('MetaNodeStake', () => {
         describe('创建池子', async () => {
 
             it('验证非以太币创建池子回滚', async () => {
-                const {metaNodeStakeProxy: _metaNodeStakeProxy} = await networkHelpers.loadFixture(metaNodeStakeFixture)
-                await expect(_metaNodeStakeProxy.addPool(
+                const {metaNodeStakeProxyFixture} = await networkHelpers.loadFixture(metaNodeStakeFixture)
+                await expect(metaNodeStakeProxyFixture.addPool(
                     metaNodeAddr,
                     100n,
                     ethers.parseEther('1'),
@@ -92,15 +91,15 @@ describe('MetaNodeStake', () => {
             })
 
             it('验证已有池子情况下使用以太币创建池子回滚', async () => {
-                const {metaNodeStakeProxy: _metaNodeStakeProxy} = await networkHelpers.loadFixture(metaNodeStakeFixture)
-                await _metaNodeStakeProxy.addPool(
+                const {metaNodeStakeProxyFixture} = await networkHelpers.loadFixture(metaNodeStakeFixture)
+                await metaNodeStakeProxyFixture.addPool(
                     ethers.ZeroAddress,
                     100n,
                     ethers.parseEther('1'),
                     10000,
                     true
                 )
-                await expect(_metaNodeStakeProxy.addPool(
+                await expect(metaNodeStakeProxyFixture.addPool(
                     ethers.ZeroAddress,
                     100n,
                     ethers.parseEther('1'),
@@ -110,15 +109,15 @@ describe('MetaNodeStake', () => {
             })
 
             it('验证取消质押锁定块数为零回滚', async () => {
-                const {metaNodeStakeProxy: _metaNodeStakeProxy} = await networkHelpers.loadFixture(metaNodeStakeFixture)
-                await _metaNodeStakeProxy.addPool(
+                const {metaNodeStakeProxyFixture} = await networkHelpers.loadFixture(metaNodeStakeFixture)
+                await metaNodeStakeProxyFixture.addPool(
                     ethers.ZeroAddress,
                     100n,
                     ethers.parseEther('1'),
                     10000,
                     true
                 )
-                await expect(_metaNodeStakeProxy.addPool(
+                await expect(metaNodeStakeProxyFixture.addPool(
                     metaNodeAddr,
                     100n,
                     ethers.parseEther('1'),
@@ -128,15 +127,15 @@ describe('MetaNodeStake', () => {
             })
 
             it('验证正确的创建以太币质押池子和ERC20代币质押池子', async () => {
-                const {metaNodeStakeProxy: _metaNodeStakeProxy} = await networkHelpers.loadFixture(metaNodeStakeFixture)
-                await _metaNodeStakeProxy.addPool(
+                const {metaNodeStakeProxyFixture} = await networkHelpers.loadFixture(metaNodeStakeFixture)
+                await metaNodeStakeProxyFixture.addPool(
                     ethers.ZeroAddress,
                     100n,
                     ethers.parseEther('1'),
                     10000n,
                     true
                 )
-                await _metaNodeStakeProxy.addPool(
+                await metaNodeStakeProxyFixture.addPool(
                     metaNodeAddr,
                     100n,
                     ethers.parseEther('1'),
@@ -149,15 +148,15 @@ describe('MetaNodeStake', () => {
         describe('更新池子基本信息', async () => {
 
             it('验证正确的更新池子基本信息', async () => {
-                const {metaNodeStakeProxy: _metaNodeStakeProxy} = await networkHelpers.loadFixture(metaNodeStakeFixture)
-                await _metaNodeStakeProxy.addPool(
+                const {metaNodeStakeProxyFixture} = await networkHelpers.loadFixture(metaNodeStakeFixture)
+                await metaNodeStakeProxyFixture.addPool(
                     ethers.ZeroAddress,
                     100n,
                     ethers.parseEther('1'),
                     10000n,
                     true
                 )
-                await _metaNodeStakeProxy["updatePool(uint256,uint256,uint256)"](
+                await metaNodeStakeProxyFixture["updatePool(uint256,uint256,uint256)"](
                     0,
                     ethers.parseEther('0.5'),
                     5000n
