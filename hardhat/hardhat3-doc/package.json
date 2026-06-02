@@ -28,7 +28,12 @@
     "ignition:deploy:example:sepolia": "hardhat ignition deploy ./ignition/modules/Example.ts --network sepolia",
     "ignition:check:status": "hardhat ignition status chain-11155111",
     "ignition:check:verify": "hardhat ignition verify chain-11155111 --network sepolia",
-    "ignition:deploy:crowdfundingFactory": "hardhat ignition deploy ./ignition/modules/CrowdfundingFactory.ts --network sepolia"
+    "ignition:deploy:crowdfundingFactory": "hardhat ignition deploy ./ignition/modules/CrowdfundingFactory.ts --network sepolia",
+    "MetaNodeStake:deploy-to-local-with-hardhat": "hardhat run ./scripts/projects/MetaNodeStake/deploy-to-local-with-hardhat.ts --network localhost",
+    "MetaNodeStake:deploy-to-local-with-ethers": "node ./scripts/projects/MetaNodeStake/deploy-to-local-with-ethers.ts",
+    "MetaNodeStake:deploy-to-sepolia-with-ethers": "node ./scripts/projects/MetaNodeStake/deploy-to-sepolia-with-ethers.ts",
+    "MetaNodeStake:test": "hardhat test test/projects/MetaNodeStake/MetaNodeStake.test.ts",
+    "MetaNode:test": "hardhat test test/projects/MetaNodeStake/MetaNode.test.ts"
   },
   "keywords": [],
   "author": "",

@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="compile" type="js.build_tools.npm" nameIsGenerated="true">
+  <configuration default="false" name="MetaNode:deploy-to-sepolia-with-ethers" type="js.build_tools.npm" nameIsGenerated="true">
     <package-json value="$PROJECT_DIR$/hardhat/hardhat3-doc/package.json" />
     <command value="run" />
     <scripts>
-      <script value="compile" />
+      <script value="MetaNode:deploy-to-sepolia-with-ethers" />
     </scripts>
     <node-interpreter value="project" />
     <package-manager value="npm" />
