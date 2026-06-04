@@ -5,6 +5,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract MetaNode is ERC20 {
     constructor(string memory name_, string memory symbol_) ERC20(name_, symbol_) {
-        _mint(msg.sender, 10000000 * 1_000_000_000_000_000_000);
+        _mint(msg.sender, 10000000000 * 1_000_000_000_000_000_000);
     }
 }

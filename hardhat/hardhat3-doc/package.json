@@ -33,7 +33,8 @@
     "MetaNodeStake:deploy-to-local-with-ethers": "node ./scripts/projects/MetaNodeStake/deploy-to-local-with-ethers.ts",
     "MetaNodeStake:deploy-to-sepolia-with-ethers": "node ./scripts/projects/MetaNodeStake/deploy-to-sepolia-with-ethers.ts",
     "MetaNodeStake:test": "hardhat test test/projects/MetaNodeStake/MetaNodeStake.test.ts",
-    "MetaNode:test": "hardhat test test/projects/MetaNodeStake/MetaNode.test.ts"
+    "MetaNode:test": "hardhat test test/projects/MetaNodeStake/MetaNode.test.ts",
+    "MetaNode:ignition:deploy:sepolia": "hardhat ignition deploy ./ignition/modules/projects/MetaNodeStake/MetaNode.ts --network sepolia"
   },
   "keywords": [],
   "author": "",

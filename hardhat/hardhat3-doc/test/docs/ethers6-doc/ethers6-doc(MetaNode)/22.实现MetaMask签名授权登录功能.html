@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Hello World</title>
+    <link rel="icon" href="https://react.docschina.org//favicon-32x32.png?v=f4d46f030265b4c48a05c999b8d93791"
+          type="image/png">
+    <script src="../../../../../../@lib/react@18.3.1/umd/react.development.js"></script>
+    <script src="../../../../../../@lib/react-dom@18.3.1/umd/react-dom.development.js"></script>
+    <script src="../../../../../../@lib/@babel/standalone@7.29.7/babel.min.js"></script>
+    <script src="../../../../../../@lib/ethers/6.15.0/ethers.umd.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    const SEPOLIA_HTTPS_RPC_URL = 'https://sepolia.infura.io/v3/e13648d8a1f64b839a17533b1bd2d981'
+    const PRIVATE_KEY_1 = '925eddbd83b71706148ba1799ce40eca3ea9d581e848ca87f01a0f46ae6b98df'
+    const {useState, useEffect, useMemo, useCallback} = React
+
+    function App() {
+        const [provider, setProvider] = useState()
+        const [signer, setSigner] = useState()
+        const [walletAddr, setWalletAddr] = useState()
+
+        const onLogin = useCallback(() => {
+
+        }, [])
+
+        useEffect(() => {
+            const _browserProvider = new ethers.BrowserProvider(window.ethereum)
+            _browserProvider.getSigner().then(_signer => {
+                console.log(_signer)
+                setSigner(_signer)
+            })
+            setProvider(_browserProvider)
+
+            const jsonRpcProvider = new ethers.JsonRpcProvider(SEPOLIA_HTTPS_RPC_URL)
+            const wallet = new ethers.Wallet(PRIVATE_KEY_1, jsonRpcProvider)
+            console.log(wallet)
+        }, [])
+
+
+        return <div>
+            <div>
+                钱包地址: {walletAddr}
+            </div>
+            <div>
+                钱包地址: {walletAddr}
+            </div>
+            <div>
+                <button onClick={onLogin}>登录</button>
+            </div>
+        </div>
+    }
+
+    const container = document.getElementById('root')
+    const root = ReactDOM.createRoot(container)
+    root.render(<App/>)
+
+</script>
+</body>
+</html>

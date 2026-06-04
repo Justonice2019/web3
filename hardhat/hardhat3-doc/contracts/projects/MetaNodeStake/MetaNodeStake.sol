@@ -45,9 +45,22 @@ contract MetaNodeStake is
     uint256 public MetaNodePerBlock; // 每个区块高度，MetaNode 的奖励数量
     uint256 public totalPoolWeight; // 所有资金池的权重总和
     Pool[] public pool; // 资金池列表
+    bool public withdrawPaused; // 是否暂停提现
+    // Pause the claim function
+    bool public claimPaused; // 是否暂停领取
 
     modifier checkPid(uint256 _pid) {
         require(_pid < pool.length, "invalid pid");
+        _;
+    }
+
+    modifier whenNotClaimPaused() {
+        require(!claimPaused, "claim is paused");
+        _;
+    }
+
+    modifier whenNotWithdrawPaused() {
+        require(!withdrawPaused, "withdraw is paused");
         _;
     }
 
@@ -266,6 +279,29 @@ contract MetaNodeStake is
         user_.finishedMetaNode = finishedMetaNode;
     }
 
+    function claim(
+        uint256 _pid
+    ) public whenNotPaused checkPid(_pid) whenNotClaimPaused {
+        Pool storage pool_ = pool[_pid];
+        User storage user_ = user[_pid][msg.sender];
+
+        updatePool(_pid);
+
+        uint256 pendingMetaNode_ = (user_.stAmount * pool_.accMetaNodePerST) /
+            (1 ether) -
+                        user_.finishedMetaNode +
+                        user_.pendingMetaNode;
+
+        if (pendingMetaNode_ > 0) {
+            user_.pendingMetaNode = 0;
+            _safeMetaNodeTransfer(msg.sender, pendingMetaNode_);
+        }
+
+        user_.finishedMetaNode =
+            (user_.stAmount * pool_.accMetaNodePerST) /
+            (1 ether);
+    }
+
     function updatePool(uint256 _pid) public checkPid(_pid) {
         Pool storage pool_ = pool[_pid];
 
@@ -306,6 +342,28 @@ contract MetaNodeStake is
         uint256 length = pool.length;
         for (uint256 pid = 0; pid < length; pid++) {
             updatePool(pid);
+        }
+    }
+
+    function _safeMetaNodeTransfer(address _to, uint256 _amount) internal {
+        uint256 MetaNodeBal = MetaNode.balanceOf(address(this));
+        require(MetaNodeBal > 0, "No MetaNode tokens in contract");
+        uint256 transferAmount = _amount > MetaNodeBal ? MetaNodeBal : _amount;
+        bool success = MetaNode.transfer(_to, transferAmount);
+        require(success, "MetaNode transfer failed");
+    }
+
+    function _safeETHTransfer(address _to, uint256 _amount) internal {
+        (bool success, bytes memory data) = address(_to).call{value: _amount}(
+            ""
+        );
+
+        require(success, "ETH transfer call failed");
+        if (data.length > 0) {
+            require(
+                abi.decode(data, (bool)),
+                "ETH transfer operation did not succeed"
+            );
         }
     }
 }

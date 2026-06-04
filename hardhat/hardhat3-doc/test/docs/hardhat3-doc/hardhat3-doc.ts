@@ -49,7 +49,7 @@ const crowdfundingCampaignFixture = async () => {
 
 describe('hardhat3-doc', () => {
 
-  it('network.networkHelpers', async () => {
+  it('network.networkHelpers.time', async () => {
     const {contract} = await networkHelpers.loadFixture(exampleFixture)
     expect(ethers.isAddress(await contract.getAddress())).to.be.true
 
@@ -66,8 +66,12 @@ describe('hardhat3-doc', () => {
     await time.increase(10 * 60)
     const latestTimeAfter = await time.latest()
     console.log(`    [状态] 最新时间: ${dayjs(latestTimeAfter * 1000).format('YYYY-MM-DD HH:mm:ss')}`);
+  })
 
-
+  it('network.networkHelpers.mine()', async () => {
+    console.log('当前区块高度:', await ethers.provider.getBlockNumber())
+    await networkHelpers.mine(300)
+    console.log('当前区块高度:', await ethers.provider.getBlockNumber())
   })
 
   describe('network.ethers.deployContract=>contract', async () => {
